@@ -12,6 +12,10 @@
 - [x] See user profile
 - [x] See My profile
 - [x] See the full photo
-- [] Upload a photo
-- [] Edit the photo
-- [] See the feed
+- [ ] Upload a photo
+- [ ] Edit the photo
+- [ ] See the feed
+- [ ] See rooms
+- [ ] See room
+- [ ] Send private Message
+- [ ] Receive Message (Realtime)
