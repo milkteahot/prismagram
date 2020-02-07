@@ -1,9 +1,15 @@
 export const COMMENT_FRAGMENT = `
-    fragment CommentParts on Comment {
         id
         text
         user {
-            userName
+            ${USER_FRAGMENT}
         }
-    }
+`
+export const USER_FRAGMENT = `
+        id
+        userName
+`
+export const FILE_FRAGMENT = `
+        id
+        url
 `

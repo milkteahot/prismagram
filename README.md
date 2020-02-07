@@ -12,7 +12,7 @@
 - [x] See user profile
 - [x] See My profile
 - [x] See the full photo
-- [ ] Upload a photo
+- [x] Upload a photo
 - [ ] Edit the photo
 - [ ] See the feed
 - [ ] See rooms
