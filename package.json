@@ -31,11 +31,11 @@
     "nodemon": "^2.0.2"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js",
     "deploy": "prisma deploy",
-    "prebuild": "yarn run prisma",
     "generate": "prisma generate",
     "prisma": "yarn run deploy && yarn run generate",
+    "dev": "nodemon --exec babel-node src/server.js",
+    "prebuild": "yarn run prisma",
     "build": "babel src -d build",
     "postbuild": "cd src && copy ./api/**/*.graphql ../build/api/",
     "start": "node build/server.js"
