@@ -10,7 +10,9 @@ type User {
   isSelf: Boolean!
   bio: String
   following:[User!]! 
+  followingCount: Int!
   followers: [User!]! 
+  followersCount: Int!
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
@@ -77,10 +79,4 @@ type Message {
   updatedAt: String
 }
 
-type UserProfile{
-    user: User!
-    posts: [Post!]!
-    createdAt: String
-    updatedAt: String
-}
 
