@@ -9,6 +9,9 @@ type User {
   isFollowing: Boolean!
   isSelf: Boolean!
   bio: String
+  tag1: String
+  tag2: String
+  tag3: String
   tags: [Tag!]!
   following:[User!]! 
   followingCount: Int!

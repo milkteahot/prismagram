@@ -4,11 +4,11 @@ export default {
   Mutation: {
     editUser: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { userName, email, firstName, lastName, bio, avatar } = args;
+      const { userName, email, firstName, lastName, bio, avatar, tag1, tag2, tag3 } = args;
       const { user } = request;
       return prisma.updateUser({
         where: { id: user.id },
-        data: { userName, email, firstName, lastName, bio, avatar }
+        data: { userName, email, firstName, lastName, bio, avatar, tag1, tag2, tag3 }
       });
     }
   }
