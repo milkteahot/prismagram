@@ -1,0 +1,12 @@
+enum ACTIONS {
+    EDIT
+    DELETE
+}
+
+type Mutation {
+    editMember(
+        id:String! 
+        memberName: String
+        action: ACTIONS!
+    ): Member!
+}

@@ -1,3 +1,3 @@
 type Mutation {
-    addMember(memberName:String! files: [String!]!) : Member!
+    addMember(memberName:String! files: [String!]! caption: String) : Member!
 }
