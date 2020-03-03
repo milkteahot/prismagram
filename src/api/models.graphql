@@ -9,6 +9,7 @@ type User {
   isFollowing: Boolean!
   isSelf: Boolean!
   bio: String
+  tags: [Tag!]!
   following:[User!]! 
   followingCount: Int!
   followers: [User!]! 
@@ -30,6 +31,7 @@ type Post {
   user: User!
   likes: [Like!]!
   comments: [Comment!]!
+  tags: [Tag!]!
   isLiked: Boolean!
   likeCount: Int!
   createdAt: String
@@ -51,6 +53,14 @@ type Comment {
   post: Post!
   createdAt: String
   updatedAt: String
+}
+
+type Tag {
+  id: ID!
+  text: String!
+  category1: String
+  category2: String
+  category3: String
 }
 
 type File {
