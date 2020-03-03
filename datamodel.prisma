@@ -13,6 +13,7 @@ type User {
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
+  members: [Member!]! @relation(name: "MembersOfUser", onDelete: CASCADE)
   likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)
   rooms: [Room!]! 
@@ -32,6 +33,17 @@ type Post {
   tags: [Tag!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+}
+
+type Member {
+  id: ID! @id
+  memberName: String!
+  avatar: String
+  mtag1: String
+  mtag2: String
+  mtag3: String
+  user: User! @relation(name: "MembersOfUser")
+  files: [File!]! @relation(name: "FilesOfMember", onDelete: CASCADE)
 }
 
 type Like {
