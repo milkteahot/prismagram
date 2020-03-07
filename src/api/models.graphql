@@ -83,6 +83,7 @@ type File {
   id: ID!
   url: String!
   post: Post!
+  member: Member
   createdAt: String
   updatedAt: String
 }
