@@ -37,7 +37,7 @@ type Post {
 
 type Member {
   id: ID! @id
-  memberName: String!
+  memberName: String! @unique
   avatar: String
   mtag1: String
   mtag2: String
