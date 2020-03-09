@@ -2,8 +2,8 @@ import { prisma } from "../../../generated/prisma-client";
 
 export default {
     User: {
-        fullName: (parent) => {
-            return `${parent.firstName} ${parent.lastName}`;
+        userName: (parent) => {
+            return `${parent.userName}`;
         },
         isFollowing: (parent, _, {request}) => {
             const { user } = request;

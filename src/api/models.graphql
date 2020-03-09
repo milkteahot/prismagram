@@ -1,11 +1,18 @@
+scalar DateTime
+
 type User {
   id: ID!
   avatar: String
   userName: String!
   email: String!
-  firstName: String
-  lastName: String
-  fullName: String
+  password: String!
+  zipCode: String! 
+  address: String! 
+  addressDetail: String!
+  phone: String! 
+  cart: [Cart!]!
+  payment: [Payment!]!
+  buyList: [BuyList!]!
   isFollowing: Boolean!
   isSelf: Boolean!
   bio: String
@@ -24,8 +31,86 @@ type User {
   comments: [Comment!]!
   rooms: [Room!]!
   loginSecret: String!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Product {
+  id: ID!
+  name: String! 
+  price: Int! 
+  mainCategory: String! 
+  subCategory: String!
+  files: [File!]!
+  options: [Option!]!
+  productDetailFile: [ProductDetailFile!]!
+  numberOfSales: Int!
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
+}
+
+type ProductFile {
+  id: ID! 
+  url: String! 
+  product: Product! 
+}
+
+type ProductDetailFile {
+  id: ID! 
+  productDetailFile: String! 
+  product: Product! 
+}
+
+type Option {
+  id: ID! 
+  option1: String! 
+  price1: Int!
+  option2: String
+  price2: Int
+  product: Product!
+  cart: Cart!
+  payment: Payment!
+  buyList: BuyList!
+}
+
+type Count {
+  id: ID! 
+  count: Int! 
+  cart: Cart
+  payment: Payment! 
+}
+
+type Cart {
+  id: ID! 
+  user: User! 
+  product: [Product!]!
+  options: [Option!]!
+  count: [Count!]!
+  payment: [Payment!]
+}
+
+type Quantity {
+  id: ID!
+  quantity: Int!
+  user: User! 
+  buyList: [BuyList!]!
+}
+
+type BuyList {
+  id: ID! 
+  user: User! 
+  product: [Product!]! 
+  options: [Option!]!
+  quantity: [Quantity!]!
+}
+
+type Payment {
+  id: ID!
+  user: User! 
+  product: [Product!]! 
+  options: [Option!]!
+  count: [Count!]!
+  cart: [Cart!]
 }
 
 type Post {

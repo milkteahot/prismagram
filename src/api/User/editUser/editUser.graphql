@@ -2,8 +2,6 @@ type Mutation {
     editUser(
     userName: String
     email: String
-    firstName: String 
-    lastName: String 
     bio: String
     tag1: String
     tag2: String

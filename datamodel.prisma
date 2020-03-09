@@ -3,13 +3,21 @@ type User {
   avatar: String
   userName: String! @unique
   email: String! @unique
-  firstName: String @default(value: "")
-  lastName: String
+  password: String
+  zipCode: String
+  address: String
+  addressDetail: String
+  phone: String
+  cart: [Cart!]! @relation(name: "UserOfCart", onDelete: CASCADE)
+  payment: [Payment!]! @relation(name: "UserOfPayment", onDelete: CASCADE)
+  buyList: [BuyList!]! @relation(name: "UserOfBuyList", onDelete: CASCADE)
+  isFollowing: Boolean!
+  isSelf: Boolean!
   bio: String
   tag1: String
   tag2: String
   tag3: String
-  tags: [Tag!]!
+  tags: [Tag!]! @relation(name: "TagsOfUser", onDelete: CASCADE)
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
@@ -20,6 +28,86 @@ type User {
   loginSecret: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+}
+
+type Product {
+  id: ID! @id
+  name: String! 
+  price: Int! 
+  mainCategory: String! 
+  subCategory: String!
+  productFiles: [ProductFile!]! @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
+  options: [Option!]! @relation(name: "ProductOfOption", onDelete: CASCADE)
+  productDetailFile: [ProductDetailFile!]! @relation(name: "FileOfProductDetail", onDelete: CASCADE)
+  numberOfSales: Int! @default(value: 0)
+  cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
+  buyList: [BuyList!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
+  payment: [Payment!]! @relation(name: "ProductOfPayment", onDelete: CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ProductFile {
+  id: ID! @id
+  url: String! 
+  product: Product! @relation(name: "ProductFileOfProduct")
+}
+
+type ProductDetailFile {
+  id: ID! @id
+  productDetailFile: String! 
+  product: Product! @relation(name: "FileOfProductDetail")
+}
+
+type Option {
+  id: ID! @id
+  option1: String @default(value:"")
+  price1: Int @default(value:0)
+  option2: String
+  price2: Int
+  product: Product! @relation(name:"ProductOfOption")
+  cart: [Cart!]! @relation(name: "CartOfOption")
+  payment: [Payment!]! @relation(name: "PaymentOfOption")
+  buyList: [BuyList!]! @relation(name:"BuyListOfOption")
+}
+
+type Count {
+  id: ID! @id
+  count: Int! 
+  cart: [Cart!] @relation(name: "CartOfCount")
+  payment: [Payment!]! @relation(name: "PaymentOfCount")
+}
+
+type Cart {
+  id: ID! @id
+  user: User! @relation(name: "UserOfCart")
+  product: [Product!]! @relation(name: "ProductOfCart")
+  options: [Option!]! @relation(name: "CartOfOption")
+  count: [Count!]! @relation(name: "CartOfCount", onDelete: CASCADE)
+  payment: [Payment!] @relation(name: "PaymentOfCart")
+}
+
+type Quantity {
+  id: ID! @id
+  quantity: Int!
+  buyList: [BuyList!]! @relation(name:"BuyListOfQuanitity")
+}
+
+type BuyList {
+  id: ID! @id
+  user: User! @relation(name: "UserOfBuyList")
+  product: [Product!]! @relation(name: "ProductOfBuyList")
+  options: [Option!]! @relation(name:"BuyListOfOption")
+  quantity: [Quantity!]! @relation(name:"BuyListOfQuanitity")
+}
+
+type Payment {
+  id: ID! @id
+  user: User! @relation(name: "UserOfPayment")
+  product: [Product!]! @relation(name: "ProductOfPayment")
+  options: [Option!]! @relation(name: "PaymentOfOption")
+  count: [Count!]! @relation(name: "PaymentOfCount")
+  cart: [Cart!] @relation(name: "PaymentOfCart")
 }
 
 type Post {

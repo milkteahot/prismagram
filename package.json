@@ -1,7 +1,7 @@
 {
   "name": "prismagram",
   "version": "1.0.0",
-  "description": "nodejs",
+  "description": "Catcher Graphql Backend",
   "repository": "https://github.com/milkteahot/prismagram.git",
   "author": "milkteahot <greenegoode11@gmail.com>",
   "license": "MIT",
