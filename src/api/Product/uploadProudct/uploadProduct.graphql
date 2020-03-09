@@ -4,8 +4,8 @@ type Mutation {
         price: Int! 
         mainCategory: String! 
         subCategory: String!
-        productFiles: [String!]!
-        productDetailFiles: [String!] 
-        options: [String!]!
-    ): Product!
+        productFiles: [String!]
+        productDetailFile: [String!] 
+        options: [String!]
+    ): Product! 
 }

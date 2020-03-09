@@ -1,0 +1,28 @@
+type Query {
+    seeProduct(
+        id: String
+        sort: String 
+        mainCategory: String 
+        subCategory: String 
+    ): [Product!]!
+}
+
+type Mutation {
+    seeProductBest(
+        id: String
+        sort: String! 
+        mainCategory: String
+        subCategory: String
+    ): [Product!]!
+}
+
+type Mutation {
+    seeProductAll(
+        id: String 
+        sort: String!
+        mainCategory: String
+        subCategory: String 
+        first: Int 
+        skip: Int
+    ): [Product!]!
+}

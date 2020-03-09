@@ -8,6 +8,7 @@ type User {
   address: String
   addressDetail: String
   phone: String
+  products: [Product!]! @relation(name: "ProductOfUser", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "UserOfCart", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "UserOfPayment", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "UserOfBuyList", onDelete: CASCADE)
@@ -33,12 +34,13 @@ type User {
 type Product {
   id: ID! @id
   name: String! 
+  user: User! @relation(name: "ProudctOfUser")
   price: Int! 
   mainCategory: String! 
   subCategory: String!
-  productFiles: [ProductFile!]! @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
-  options: [Option!]! @relation(name: "ProductOfOption", onDelete: CASCADE)
-  productDetailFile: [ProductDetailFile!]! @relation(name: "FileOfProductDetail", onDelete: CASCADE)
+  productFiles: [ProductFile!] @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
+  options: [Option!] @relation(name: "ProductOfOption", onDelete: CASCADE)
+  productDetailFile: [ProductDetailFile!] @relation(name: "FileOfProductDetail", onDelete: CASCADE)
   numberOfSales: Int! @default(value: 0)
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
