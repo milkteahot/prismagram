@@ -41,7 +41,7 @@ type Product {
   price: Int! 
   mainCategory: String! 
   subCategory: String!
-  files: [File!]!
+  productFiles: [ProductFile!]!
   options: [Option!]!
   productDetailFile: [ProductDetailFile!]!
   numberOfSales: Int!

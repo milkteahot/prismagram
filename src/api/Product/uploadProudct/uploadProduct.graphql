@@ -1,0 +1,11 @@
+type Mutation {
+    uploadProduct(
+        name: String!
+        price: Int! 
+        mainCategory: String! 
+        subCategory: String!
+        productFiles: [String!]!
+        productDetailFiles: [String!] 
+        options: [String!]!
+    ): Product!
+}

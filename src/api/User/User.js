@@ -2,6 +2,8 @@ import { prisma } from "../../../generated/prisma-client";
 
 export default {
   User: {
+    cart: ({ id }) => prisma.user({ id }).cart(),
+    buyList: ({ id }) => prisma.user({ id }).buyList(),
     posts: ({ id }) => prisma.user({ id }).posts(),
     members: ({ id }) => prisma.user({ id }).members(),
     following: ({ id }) => prisma.user({ id }).following(),
@@ -43,7 +45,7 @@ export default {
       } catch {
         return false;
       }
-    }, 
+    },
     isSelf: (parent, _, { request }) => {
       const { user } = request;
       const { id: parentId } = parent;
