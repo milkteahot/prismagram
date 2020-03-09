@@ -1,0 +1,39 @@
+type Mutation {
+    editProduct (
+        id: String! 
+        name: String 
+        price: Int
+        mainCategory: String 
+        subCategory: String 
+    ): Product!
+}
+
+type Mutation {
+    editNumberOfSales (
+        id: [String!]! 
+        saleCount: [Int!]!
+    ): Boolean! 
+}
+
+type Mutation {
+    editProductFile (
+        productFileId: String 
+        productFile: [String] 
+    ): Boolean!
+}
+
+
+type Mutation {
+    editOption (
+        productId: String
+        optionId: [String] 
+        optionValue: [String] 
+    ): Boolean! 
+}
+
+type Mutation {
+    editProductDetailFile (
+        id: String! 
+        productDetailFile: String!
+    ): Product! 
+}
