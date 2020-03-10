@@ -2,7 +2,7 @@ scalar DateTime
 
 type User {
   id: ID!
-  avatar: String
+  avatar: String 
   userName: String!
   email: String!
   password: String!
@@ -126,6 +126,7 @@ type Post {
   tags: [Tag!]!
   isLiked: Boolean!
   likeCount: Int!
+  commentCount: Int!
   createdAt: String
   updatedAt: String
 }
