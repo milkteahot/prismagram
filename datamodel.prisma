@@ -5,6 +5,7 @@ type User {
     )
   userName: String! @unique
   email: String! @unique
+  nickName: String!
   password: String
   zipCode: String
   address: String

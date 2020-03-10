@@ -1,6 +1,7 @@
 type Mutation {
     editUser(
     userName: String
+    nickName: String
     email: String
     bio: String
     tag1: String

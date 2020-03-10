@@ -5,6 +5,7 @@ type User {
   avatar: String 
   userName: String!
   email: String!
+  nickName: String!
   password: String!
   zipCode: String! 
   address: String! 
