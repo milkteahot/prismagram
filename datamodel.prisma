@@ -45,6 +45,11 @@ type Product {
   options: [Option!] @relation(name: "ProductOfOption", onDelete: CASCADE)
   productDetailFile: [ProductDetailFile!] @relation(name: "FileOfProductDetail", onDelete: CASCADE)
   numberOfSales: Int! @default(value: 0)
+  likes: [Like!]! @relation(name:"LikeOfProduct", onDelete: CASCADE)
+  commentproduct: [CommentProduct!]! @relation(name: "CommentProudctOfProduct", onDelete: CASCADE)
+  isLiked: Boolean!
+  likeCount: Int!
+  commentCount: Int!
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "ProductOfPayment", onDelete: CASCADE)
@@ -123,6 +128,9 @@ type Post {
   files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfPost", onDelete: CASCADE)
+  isLiked: Boolean!
+  likeCount: Int!
+  commentCount: Int!
   tags: [Tag!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -143,6 +151,7 @@ type Like {
   id: ID! @id
   user: User! @relation(name:"LikesOfUser")
   post: Post @relation(name:"LikeOfPost")
+  product: Product @relation(name:"LikeOfProduct")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -155,6 +164,16 @@ type Comment {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
+
+type CommentProduct {
+  id: ID! @id
+  text: String!
+  user: User! @relation(name: "CommentProductOfUser")
+  product: Product! @relation(name: "CommentProductOfProduct")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
 
 type Tag {
   id: ID! @id

@@ -1,0 +1,3 @@
+type Mutation {
+  addCommentProduct(text: String!, productId: String!): CommentProduct!
+}
