@@ -1,0 +1,7 @@
+type Mutation {
+    editCart(
+        id: String! 
+        pcount: Int!
+    ):Cart!
+}
+ 

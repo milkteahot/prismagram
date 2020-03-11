@@ -94,6 +94,7 @@ type Cart {
   product: [Product!]! @relation(name: "ProductOfCart")
   options: [Option!]! @relation(name: "CartOfOption")
   count: [Count!]! @relation(name: "CartOfCount", onDelete: CASCADE)
+  pcount: Int! @default(value:0)
   payment: [Payment!] @relation(name: "PaymentOfCart")
 }
 
