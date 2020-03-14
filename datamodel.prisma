@@ -3,6 +3,7 @@ type User {
   avatar: String  @default(
       value: "https://scontent-hkg3-1.cdninstagram.com/vp/51ea9f9……74447047_1561961433825017856_n.jpg?_nc_ht=scontent-hkg3-1.cdninstagram.com"
     )
+  storyImg: String 
   userName: String! @unique
   email: String! @unique
   nickName: String!
@@ -25,6 +26,9 @@ type User {
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
+  postsCount: Int!
+  wikiposts: [WikiPost!]! @relation(name: "WikiPostsOfUser", onDelete: CASCADE)
+  wikipostsCount: Int!
   members: [Member!]! @relation(name: "MembersOfUser", onDelete: CASCADE)
   likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)
@@ -137,6 +141,22 @@ type Post {
   updatedAt: DateTime! @updatedAt
 }
 
+type WikiPost {
+  id: ID! @id
+  title: String!
+  caption: String!
+  user: User! @relation(name: "WikiPostsOfUser")
+  wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfWikiPost", onDelete: CASCADE)
+  likes: [Like!]! @relation(name:"LikeOfWikiPost", onDelete: CASCADE)
+  wikicomments: [WikiComment!]! @relation(name: "WikiCommentsOfWikiPost", onDelete: CASCADE)
+  isLiked: Boolean!
+  likeCount: Int!
+  commentCount: Int!
+  tags: [Tag!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
 type Member {
   id: ID! @id
   memberName: String! @unique
@@ -146,12 +166,14 @@ type Member {
   mtag3: String
   user: User! @relation(name: "MembersOfUser")
   files: [File!]! @relation(name: "FilesOfMember", onDelete: CASCADE)
+  wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfMember", onDelete: CASCADE)
 }
 
 type Like {
   id: ID! @id
   user: User! @relation(name:"LikesOfUser")
   post: Post @relation(name:"LikeOfPost")
+  wikipost: WikiPost @relation(name:"LikeOfWikiPost")
   product: Product @relation(name:"LikeOfProduct")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -175,6 +197,14 @@ type CommentProduct {
   updatedAt: DateTime! @updatedAt
 }
 
+type WikiComment {
+  id: ID! @id
+  text: String! 
+  user: User! @relation(name: "WikiCommentOfUser")
+  wikipost: WikiPost! @relation(name: "WikiCommentOfWikiPost")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
 
 type Tag {
   id: ID! @id
@@ -189,6 +219,15 @@ type File {
   url: String!
   post: Post @relation(name:"FilesOfPost")
   member: Member @relation(name:"FilesOfMember")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type WikiFile {
+  id: ID! @id
+  url: String!
+  wikipost: WikiPost! @relation(name:"WikiFilesOfWikiPost")
+  member: Member @relation(name:"WikiFilesOfMember")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

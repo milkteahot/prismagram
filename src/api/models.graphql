@@ -3,6 +3,7 @@ scalar DateTime
 type User {
   id: ID!
   avatar: String 
+  storyImg: String
   userName: String!
   email: String!
   nickName: String!
@@ -28,6 +29,8 @@ type User {
   followersCount: Int!
   posts: [Post!]!
   postsCount: Int!
+  wikiposts: [WikiPost!]!
+  wikipostsCount: Int!
   members: [Member!]!
   likes: [Like!]!
   comments: [Comment!]!
@@ -138,6 +141,22 @@ type Post {
   updatedAt: String
 }
 
+type WikiPost {
+  id: ID!
+  title: String!
+  caption: String!
+  user: User!
+  wikifiles: [WikiFile!]!
+  likes: [Like!]!
+  wikicomments: [WikiComment!]!
+  isLiked: Boolean!
+  likeCount: Int!
+  commentCount: Int!
+  tags: [Tag!]!
+  createdAt: String
+  updatedAt: String
+}
+
 type Member {
   id: ID! 
   memberName: String!
@@ -147,12 +166,14 @@ type Member {
   mtag3: String
   user: User! 
   files: [File!]! 
+  wikifiles: [WikiFile!]!
 }
 
 type Like {
   id: ID!
   user: User!
   post: Post
+  wikipost: WikiPost
   product: Product
   createdAt: String
   updatedAt: String
@@ -176,6 +197,15 @@ type CommentProduct {
   updatedAt: String
 }
 
+type WikiComment {
+  id: ID!
+  text: String!
+  user: User!
+  wikipost: WikiPost!
+  createdAt: String
+  updatedAt: String
+}
+
 type Tag {
   id: ID!
   text: String!
@@ -188,6 +218,15 @@ type File {
   id: ID!
   url: String!
   post: Post!
+  member: Member
+  createdAt: String
+  updatedAt: String
+}
+
+type WikiFile {
+  id: ID!
+  url: String!
+  wikipost: WikiPost!
   member: Member
   createdAt: String
   updatedAt: String
