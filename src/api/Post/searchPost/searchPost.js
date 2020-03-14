@@ -6,8 +6,9 @@ export default {
       prisma.posts({
         where: {
           OR: [
-            { location_starts_with: args.term },
-            { caption_starts_with: args.term }
+            { tags_some: args.term },
+            { caption_starts_with: args.term },
+            { title_starts_with: args.term }
           ]
         }
       })

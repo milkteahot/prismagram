@@ -124,7 +124,7 @@ type Payment {
 
 type Post {
   id: ID!
-  location: String
+  title: String!
   caption: String!
   user: User!
   files: [File!]!

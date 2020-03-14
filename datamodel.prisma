@@ -123,7 +123,7 @@ type Payment {
 
 type Post {
   id: ID! @id
-  location: String
+  title: String!
   caption: String!
   user: User! @relation(name: "PostsOfUser")
   files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
