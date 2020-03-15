@@ -1,0 +1,7 @@
+type Mutation {
+    uploadWikiPost(
+        wtitle: String! 
+        wcaption:String! 
+        wikifiles: [String!]!
+    ) : WikiPost!
+}

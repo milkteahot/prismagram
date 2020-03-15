@@ -4,10 +4,10 @@ enum ACTIONS {
 }
 
 type Mutation {
-    editPost(
+    editWikiPost(
         id:String! 
         caption: String 
         title: String
         action: ACTIONS!
-    ): Post!
+    ): WikiPost!
 }

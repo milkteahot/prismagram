@@ -2,8 +2,8 @@ import { prisma } from "../../../../generated/prisma-client";
 
 export default {
   Query: {
-    searchPost: async (_, args) =>
-      prisma.posts({
+    searchWikiPost: async (_, args) =>
+      prisma.wikiposts({
         where: {
           OR: [
             { tags_some: args.term },

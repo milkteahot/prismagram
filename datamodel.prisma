@@ -51,9 +51,6 @@ type Product {
   numberOfSales: Int! @default(value: 0)
   likes: [Like!]! @relation(name:"LikeOfProduct", onDelete: CASCADE)
   commentproduct: [CommentProduct!]! @relation(name: "CommentProudctOfProduct", onDelete: CASCADE)
-  isLiked: Boolean!
-  likeCount: Int!
-  commentCount: Int!
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "ProductOfPayment", onDelete: CASCADE)
@@ -133,9 +130,6 @@ type Post {
   files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfPost", onDelete: CASCADE)
-  isLiked: Boolean!
-  likeCount: Int!
-  commentCount: Int!
   tags: [Tag!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -143,15 +137,12 @@ type Post {
 
 type WikiPost {
   id: ID! @id
-  title: String!
-  caption: String!
+  wtitle: String
+  wcaption: String
   user: User! @relation(name: "WikiPostsOfUser")
   wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfWikiPost", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfWikiPost", onDelete: CASCADE)
   wikicomments: [WikiComment!]! @relation(name: "WikiCommentsOfWikiPost", onDelete: CASCADE)
-  isLiked: Boolean!
-  likeCount: Int!
-  commentCount: Int!
   tags: [Tag!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

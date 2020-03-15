@@ -12,8 +12,8 @@ export default {
             const post = await prisma.$exists.post({ id, user: {id: user.id }});
             if(post) {
                 if(action === EDIT) {
-                    return prisma.updatePost(
-                        {data: {caption, title}, 
+                    return prisma.updatePost({
+                        data: {caption, title}, 
                         where: {id}
                         }); 
                 } else if(action === DELETE) {

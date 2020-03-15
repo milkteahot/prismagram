@@ -1,11 +1,11 @@
 import { prisma } from "../../../generated/prisma-client";
 
 export default {
-  Post: {
-    user: ({ id }) => prisma.post({ id }).user(),
-    comments: ({ id }) => prisma.post({ id }).comments(),
-    likes: ({ id }) => prisma.post({ id }).likes(),
-    files: ({ id }) => prisma.post({ id }).files(),
+  WikiPost: {
+    user: ({ id }) => prisma.wikipost({ id }).user(),
+    wikicomments: ({ id }) => prisma.wikipost({ id }).wikicomments(),
+    likes: ({ id }) => prisma.wikipost({ id }).likes(),
+    wikifiles: ({ id }) => prisma.wikipost({ id }).wikifiles(),
     isLiked: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
@@ -17,7 +17,7 @@ export default {
             }
           },
           {
-            post: {
+            wikipost: {
               id
             }
           }
@@ -27,14 +27,14 @@ export default {
     likeCount: parent =>
       prisma
         .likesConnection({
-          where: { post: { id: parent.id } }
+          where: { wikipost: { id: parent.id } }
         })
         .aggregate()
         .count(),
     commentCount: parent =>
       prisma
         .commentsConnection({
-          where: { post: { id: parent.id } }
+          where: { wikipost: { id: parent.id } }
         })
         .aggregate()
         .count()

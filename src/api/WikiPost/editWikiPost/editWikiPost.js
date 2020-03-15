@@ -5,19 +5,19 @@ const EDIT = "EDIT";
 
 export default {
     Mutation: {
-        editPost: async(_, args, {request, isAuthenticated}) => {
+        editWikiPost: async(_, args, {request, isAuthenticated}) => {
             isAuthenticated(request);
             const { id, caption, title, action } = args;
             const { user } = request;
-            const post = await prisma.$exists.post({ id, user: {id: user.id }});
+            const post = await prisma.$exists.wikipost({ id, user: {id: user.id }});
             if(post) {
                 if(action === EDIT) {
-                    return prisma.updatePost(
+                    return prisma.updateWikiPost(
                         {data: {caption, title}, 
                         where: {id}
                         }); 
                 } else if(action === DELETE) {
-                    return prisma.deletePost({ id });
+                    return prisma.deleteWikiPost({ id });
 
                 }
             } else {
