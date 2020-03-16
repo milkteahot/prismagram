@@ -9,7 +9,8 @@ export default {
             { title_starts_with: args.term },
             { caption_starts_with: args.term }
           ]
-        }
+        },
+        orderBy: "createdAt_DESC"
       })
   }
 };
