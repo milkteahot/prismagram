@@ -51,7 +51,7 @@ export default {
     editProductFile: async (_, args) => {
       const { productFileId, productFile } = args;
       productFile.forEach(async url => {
-        await prisma.updateFile({
+        await prisma.updateProductFile({
           where: {
             id: productFileId
           },

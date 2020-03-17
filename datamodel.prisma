@@ -141,6 +141,7 @@ type WikiPost {
   wcaption: String
   user: User! @relation(name: "WikiPostsOfUser")
   wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfWikiPost", onDelete: CASCADE)
+  text: String
   likes: [Like!]! @relation(name:"LikeOfWikiPost", onDelete: CASCADE)
   wikicomments: [WikiComment!]! @relation(name: "WikiCommentsOfWikiPost", onDelete: CASCADE)
   tags: [Tag!]!
@@ -151,10 +152,11 @@ type WikiPost {
 type Member {
   id: ID! @id
   memberName: String! @unique
-  avatar: String
+  avatar: String @default (value: "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png")
   mtag1: String
   mtag2: String
   mtag3: String
+  memberTag: [MemberTag!]! @relation(name: "MemberTagOfMember")
   user: User! @relation(name: "MembersOfUser")
   files: [File!]! @relation(name: "FilesOfMember", onDelete: CASCADE)
   wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfMember", onDelete: CASCADE)
@@ -203,6 +205,14 @@ type Tag {
   category1: String
   category2: String
   category3: String
+}
+
+type MemberTag {
+  id: ID! @id
+  text: String! 
+  member: Member! @relation(name: "MemberTagOfMember")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type File {

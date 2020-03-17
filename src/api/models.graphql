@@ -147,6 +147,7 @@ type WikiPost {
   wcaption: String
   user: User!
   wikifiles: [WikiFile!]!
+  text: String
   likes: [Like!]!
   wikicomments: [WikiComment!]!
   isLiked: Boolean
@@ -164,6 +165,7 @@ type Member {
   mtag1: String
   mtag2: String
   mtag3: String
+  memberTag: [MemberTag!]!
   user: User! 
   files: [File!]! 
   wikifiles: [WikiFile!]!
@@ -212,6 +214,14 @@ type Tag {
   category1: String
   category2: String
   category3: String
+}
+
+type MemberTag {
+  id: ID!
+  text: String! 
+  member: Member!
+  createdAt: String
+  updatedAt: String
 }
 
 type File {

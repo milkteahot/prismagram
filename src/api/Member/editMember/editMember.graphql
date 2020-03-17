@@ -7,9 +7,17 @@ type Mutation {
     editMember(
         id:String! 
         memberName: String
+        avatar: String
         mtag1: String
         mtag2: String
         mtag3: String
         action: ACTIONS!
     ): Member!
+}
+ 
+type Mutation {
+    editMemberTag (
+        memberTagid: String 
+        memberTag: [String] 
+    ): MemberTag!
 }

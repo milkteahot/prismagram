@@ -5,10 +5,10 @@ export default {
     uploadWikiPost: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
-      const { wcaption, wtitle, wikifiles } = args;
+      const { wcaption, wtitle, wikifiles, text } = args;
       console.log(args);
       const wikipost = await prisma.createWikiPost({
-        data: {wcaption, wtitle}, 
+        data: {wcaption, wtitle, text}, 
         user: { connect: { id: user.id } }
       });  
       wikifiles.forEach(
