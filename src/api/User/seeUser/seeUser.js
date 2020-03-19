@@ -8,8 +8,8 @@ export default {
     },
     users: async(_, __) => {
       return prisma.users({
-        first:4,
-        orderBy: "createdAt_DESC"
+        
+        orderBy: "updatedAt_DESC"
       });
     }
 
