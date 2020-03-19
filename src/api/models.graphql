@@ -16,8 +16,8 @@ type User {
   cart: [Cart!]!
   payment: [Payment!]!
   buyList: [BuyList!]!
-  isFollowing: Boolean!
-  isSelf: Boolean!
+  isFollowing: Boolean
+  isSelf: Boolean
   bio: String
   tag1: String
   tag2: String

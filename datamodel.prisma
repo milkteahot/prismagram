@@ -16,8 +16,8 @@ type User {
   cart: [Cart!]! @relation(name: "UserOfCart", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "UserOfPayment", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "UserOfBuyList", onDelete: CASCADE)
-  isFollowing: Boolean!
-  isSelf: Boolean!
+  isFollowing: Boolean
+  isSelf: Boolean
   bio: String
   tag1: String
   tag2: String
@@ -26,9 +26,9 @@ type User {
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
-  postsCount: Int!
+  postsCount: Int
   wikiposts: [WikiPost!]! @relation(name: "WikiPostsOfUser", onDelete: CASCADE)
-  wikipostsCount: Int!
+  wikipostsCount: Int
   members: [Member!]! @relation(name: "MembersOfUser", onDelete: CASCADE)
   likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)

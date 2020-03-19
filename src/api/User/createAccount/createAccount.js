@@ -7,7 +7,7 @@ const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
 export default {
   Mutation: {
     createAccount: async (_, args) => {
-      const { userName, email, password } = args;
+      const { userName, nickName, email, password } = args;
       const exists = await prisma.$exists.user({ email });
       if (exists) {
         throw Error("This email is already taken");
@@ -20,6 +20,7 @@ export default {
         bcrypt.hash(password, 10, async function(err, hash) {
             await prisma.createUser({
                 userName,
+                nickName,
                 email,
                 password: hash
             });
