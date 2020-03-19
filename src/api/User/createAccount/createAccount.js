@@ -9,6 +9,10 @@ export default {
     createAccount: async (_, args) => {
       const { userName, nickName, email, password } = args;
       const exists = await prisma.$exists.user({ email });
+      const existsUserName = await prisma.$exists.user({ userName });
+      if(existsUserName) {
+        throw Error("This userName is already taken");
+      }
       if (exists) {
         throw Error("This email is already taken");
       }else {

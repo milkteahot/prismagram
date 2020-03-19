@@ -1,3 +1,13 @@
 type Query {
     seeUser(userName: String!): User!
 }   
+
+type Query {
+    users: [User!]!
+    user(id: ID!): User
+}
+
+type User {
+    id: ID!
+    userName: String!
+}

@@ -5,6 +5,8 @@ export default {
     seeUser: async (_, args) => {
       const { userName } = args;
       return prisma.user({ userName });
-    }
+    },
+
+    
   }
 };
