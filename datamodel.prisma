@@ -160,6 +160,8 @@ type Member {
   user: User! @relation(name: "MembersOfUser")
   files: [File!]! @relation(name: "FilesOfMember", onDelete: CASCADE)
   wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfMember", onDelete: CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Like {

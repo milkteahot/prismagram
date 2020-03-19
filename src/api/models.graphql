@@ -169,6 +169,8 @@ type Member {
   user: User! 
   files: [File!]! 
   wikifiles: [WikiFile!]!
+  createdAt: String
+  updatedAt: String
 }
 
 type Like {
