@@ -7,13 +7,13 @@ export default {
     Mutation: {
         editWikiPost: async(_, args, {request, isAuthenticated}) => {
             isAuthenticated(request);
-            const { id, caption, title, action } = args;
+            const { id, wcaption, wtitle, action } = args;
             const { user } = request;
-            const post = await prisma.$exists.wikipost({ id, user: {id: user.id }});
-            if(post) {
+            const wikipost = await prisma.$exists.wikiPost({ id, user: {id: user.id }});
+            if(wikipost) {
                 if(action === EDIT) {
-                    return prisma.updateWikiPost(
-                        {data: {caption, title}, 
+                    return prisma.updateWikiPost({
+                        data: {wcaption, wtitle}, 
                         where: {id}
                         }); 
                 } else if(action === DELETE) {

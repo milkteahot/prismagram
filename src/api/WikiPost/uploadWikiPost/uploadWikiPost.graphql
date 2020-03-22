@@ -3,6 +3,5 @@ type Mutation {
         wtitle: String! 
         wcaption:String! 
         wikifiles: [String!]!
-        text: String
     ) : WikiPost!
 }

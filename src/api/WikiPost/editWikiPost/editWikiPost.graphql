@@ -6,8 +6,8 @@ enum ACTIONS {
 type Mutation {
     editWikiPost(
         id:String! 
-        caption: String 
-        title: String
+        wcaption: String 
+        wtitle: String
         action: ACTIONS!
     ): WikiPost!
 }
