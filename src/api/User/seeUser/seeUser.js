@@ -8,7 +8,6 @@ export default {
     },
     users: async(_, __) => {
       return prisma.users({
-        
         orderBy: "updatedAt_DESC"
       });
     }
