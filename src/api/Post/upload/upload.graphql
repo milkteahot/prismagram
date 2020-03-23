@@ -3,5 +3,6 @@ type Mutation {
         title: String! 
         caption:String! 
         files: [String!]!
+        thumbnail: String
     ) : Post!
 }

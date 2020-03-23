@@ -130,6 +130,7 @@ type Post {
   title: String!
   caption: String!
   user: User!
+  thumbnail: String 
   files: [File!]!
   likes: [Like!]!
   comments: [Comment!]!

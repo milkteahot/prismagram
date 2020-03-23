@@ -15,7 +15,7 @@ export const paymentController =  async(req, res) => {
                 imp_key: process.env.IMP_KEY,
                 imp_secret: process.env.IMP_SECRET
             }
-        });
+        }); 
 
         //인증토큰
         const { access_token } = getToken.data.response;
