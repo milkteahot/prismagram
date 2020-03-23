@@ -14,7 +14,7 @@ type Mutation {
         mainCategory: String
         subCategory: String
     ): [Product!]!
-}
+} 
 
 type Mutation {
     seeProductAll(
