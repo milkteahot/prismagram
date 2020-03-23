@@ -1,3 +1,7 @@
 type Query {
     seeMember(memberName: String!): Member!
-}   
+}    
+
+type Query {
+    members: [Member!]!
+}

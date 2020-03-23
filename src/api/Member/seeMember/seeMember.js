@@ -6,6 +6,12 @@ export default{
         seeMember: async(_, args) => {
             const { memberName } = args;
             return await prisma.member({ memberName  });
+        },
+
+        members: async(_, __) => {
+            return prisma.members({
+                orderBy: "updatedAt_DESC"
+            });
         }
     }
 };
