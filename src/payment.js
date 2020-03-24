@@ -29,7 +29,7 @@ export const paymentController =  async(req, res) => {
         const paymentData = getPaymentData.data.response;
 
         //DB에서 결제되어야 하는 금액 조회
-        const order = await prisma.payments({
+        const order = await prisma.buyLists({
             where: {
                 user: {
                     id: user.id
@@ -42,7 +42,7 @@ export const paymentController =  async(req, res) => {
         //결제 검증
         const { amount, status } = paymentData;
         if(amount === amountToBePaid) {
-            await prisma.updatePayment({
+            await prisma.createBuyList({
                 where: {
                     user: {
                         id: user.id

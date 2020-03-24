@@ -78,8 +78,8 @@ type Option {
   price2: Int
   product: Product! @relation(name:"ProductOfOption")
   cart: [Cart!]! @relation(name: "CartOfOption")
-  payment: [Payment!]! @relation(name: "PaymentOfOption")
-  buyList: [BuyList!]! @relation(name:"BuyListOfOption")
+  payment: [Payment!] @relation(name: "PaymentOfOption")
+  buyList: [BuyList!] @relation(name:"BuyListOfOption")
 }
 
 type Count {
@@ -109,7 +109,7 @@ type BuyList {
   id: ID! @id
   user: User! @relation(name: "UserOfBuyList")
   product: [Product!]! @relation(name: "ProductOfBuyList")
-  options: [Option!]! @relation(name:"BuyListOfOption")
+  options: [Option!] @relation(name:"BuyListOfOption")
   quantity: [Quantity!]! @relation(name:"BuyListOfQuanitity")
 }
 
@@ -117,7 +117,7 @@ type Payment {
   id: ID! @id
   user: User! @relation(name: "UserOfPayment")
   product: [Product!]! @relation(name: "ProductOfPayment")
-  options: [Option!]! @relation(name: "PaymentOfOption")
+  options: [Option!] @relation(name: "PaymentOfOption")
   count: [Count!]! @relation(name: "PaymentOfCount")
   cart: [Cart!] @relation(name: "PaymentOfCart")
 }

@@ -1,0 +1,6 @@
+type Mutation {
+    addBuyList(
+        product: [String]
+        quantity: [Int]
+    ):Boolean!
+}

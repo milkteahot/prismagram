@@ -1,0 +1,54 @@
+import { prisma } from "../../../../generated/prisma-client";
+
+export default {
+    Mutation: {
+        addBuyList: async (_, args, { request, isAuthenticated}) => {
+            isAuthenticated(request); 
+            const { user } = request; 
+            const { product, quantity } = args; 
+            try {
+                await quantity.map(async(item, index) => {
+                    const quantityId = await prisma.createQuantity({
+                        quantity: item
+                    }); 
+                    await prisma.createBuyList({
+                        user: {
+                            connect: {
+                                id: user.id 
+                            }
+                        }, 
+                        product: {
+                            connect: {
+                                id: product[index]
+                            }
+                        }, 
+                        
+                        quantity: {
+                            connect: {
+                                id: quantityId.id
+                            }
+                        }
+                    })
+                })
+                return true; 
+            } catch {
+                return false; 
+            }
+            // return prisma.createBuyList({
+            //     user: {
+            //         connect: {
+            //             id: user.id 
+            //         }
+            //     }, 
+            //     product: {
+            //         connect: {
+            //             id: product
+            //         }
+            //     }, 
+            //     size,
+            //     color,
+            //     count
+            // })
+        }
+    }
+}

@@ -80,8 +80,8 @@ type Option {
   price2: Int
   product: Product!
   cart: Cart!
-  payment: Payment!
-  buyList: BuyList!
+  payment: Payment
+  buyList: BuyList
 }
 
 type Count {
@@ -112,7 +112,7 @@ type BuyList {
   id: ID! 
   user: User! 
   product: [Product!]! 
-  options: [Option!]!
+  options: [Option!]
   quantity: [Quantity!]!
 }
 
@@ -120,7 +120,7 @@ type Payment {
   id: ID!
   user: User! 
   product: [Product!]! 
-  options: [Option!]!
+  options: [Option!]
   count: [Count!]!
   cart: [Cart!]
 }
