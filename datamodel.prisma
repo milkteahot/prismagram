@@ -71,6 +71,11 @@ type ProductDetailFile {
   product: Product! @relation(name: "FileOfProductDetail")
 }
 
+type AdminFile {
+  id: ID! @id
+  url: String!
+}
+
 type Option {
   id: ID! @id
   option1: String @default(value:"")

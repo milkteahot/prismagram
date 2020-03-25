@@ -1,0 +1,8 @@
+type Query {
+    seeBanner: [AdminFile!]!
+}   
+
+type AdminFile {
+    id: ID!
+    url: String!
+}

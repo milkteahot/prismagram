@@ -73,6 +73,11 @@ type ProductDetailFile {
   product: Product! 
 }
 
+type AdminFile {
+  id: ID!
+  url: String!
+}
+
 type Option {
   id: ID! 
   option1: String! 
