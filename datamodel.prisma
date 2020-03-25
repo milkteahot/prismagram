@@ -45,6 +45,7 @@ type Product {
   price: Int! 
   mainCategory: String! 
   subCategory: String!
+  thumbnail: String
   productFiles: [ProductFile!] @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
   options: [Option!] @relation(name: "ProductOfOption", onDelete: CASCADE)
   productDetailFile: [ProductDetailFile!] @relation(name: "FileOfProductDetail", onDelete: CASCADE)
