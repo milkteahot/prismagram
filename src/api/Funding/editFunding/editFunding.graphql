@@ -3,10 +3,10 @@ type Mutation {
         id: String! 
         name: String 
         price: Int
-        targetAmount: Int!
+        targetAmount: Int
         dueDate: DateTime
         currentAmount: Int 
-        numberOfParticipants: Int!
+        numberOfParticipants: Int
         mainCategory: String 
         subCategory: String 
         thumbnail: String
