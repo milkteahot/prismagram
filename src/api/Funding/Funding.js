@@ -1,12 +1,11 @@
 import { prisma } from "../../../generated/prisma-client";
 
 export default {
-  Product: {
-    user: ({ id }) => prisma.product({ id }).user(),
-    commentproduct: ({ id }) => prisma.product({ id }).commentproduct(),
-    likes: ({ id }) => prisma.product({ id }).likes(),
-    productFiles: ({ id }) => prisma.product({ id }).productFiles(),
-    options: ({ id }) => prisma.product({ id }).options(),
+  Funding: {
+    user: ({ id }) => prisma.funding({ id }).user(),
+    likes: ({ id }) => prisma.funding({ id }).likes(),
+    fundingFiles: ({ id }) => prisma.funding({ id }).fundingFiles(),
+    options: ({ id }) => prisma.funding({ id }).options(),
     isLiked: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
@@ -18,7 +17,7 @@ export default {
             }
           },
           {
-            product: {
+            funding: {
               id
             }
           }
@@ -29,14 +28,14 @@ export default {
     likeCount: parent =>
       prisma
         .likesConnection({
-          where: { product: { id: parent.id } }
+          where: { funding: { id: parent.id } }
         })
         .aggregate()
         .count(),
     commentCount: parent =>
       prisma
         .commentsConnection({
-          where: { product: { id: parent.id } }
+          where: { funding: { id: parent.id } }
         })
         .aggregate()
         .count()

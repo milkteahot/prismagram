@@ -1,24 +1,23 @@
 import { prisma } from "../../../../generated/prisma-client";
 
 export default {
-  // product 기본 정보 수정
+  // funding 기본 정보 수정
   Mutation: {
-    editProduct: async (_, args, { request, isAuthenticated }) => {
+    editFunding: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { id, name, price, mainCategory, subCategory, thumbnail } = args;
+      const { id, name, price, mainCategory, subCategory } = args;
       const { user } = request;
-      const product = await prisma.$exists.product({
+      const funding = await prisma.$exists.funding({
         id,
         user: { id: user.id }
       });
-      if (product) {
-        return prisma.updateProduct({
+      if (funding) {
+        return prisma.updateFunding({
           data: {
             name,
             price,
             mainCategory,
-            subCategory,
-            thumbnail
+            subCategory
           },
           where: {
             id
@@ -29,16 +28,16 @@ export default {
       }
     },
     // 판매량 수정
-    editNumberOfSales: (_, args) => {
-      const { id, saleCount } = args;
+    editNumberOfParticipants: (_, args) => {
+      const { id, pplCount } = args;
       try {
         id.map(async (item, index) => {
-          await prisma.updateProduct({
+          await prisma.updateFunding({
             where: {
               id: item
             },
             data: {
-              numberOfSales: saleCount[index]
+              numberOfParticipants: pplCount[index]
             }
           });
         });
@@ -49,12 +48,12 @@ export default {
     },
 
     // 대표이미지파일 수정
-    editProductFile: async (_, args) => {
-      const { productFileId, productFile } = args;
-      productFile.forEach(async url => {
-        await prisma.updateProductFile({
+    editFundingFile: async (_, args) => {
+      const { fundingFileId, fundingFile } = args;
+      fundingFile.forEach(async url => {
+        await prisma.updateFundingFile({
           where: {
-            id: productFileId
+            id: fundingFileId
           },
           data: {
             url
@@ -65,13 +64,13 @@ export default {
     },
     // 옵션 수정
     editOption: (_, args) => {
-      const { productId, optionId, optionValue } = args;
+      const { fundingId, optionName, optionprice } = args;
       try {
-        optionValue.map(async (item, index) => {
-          if (optionId.length > index) {
+        optionprice.map(async (item, index) => {
+          if (optionName.length > index) {
             await prisma.updateOption({
               where: {
-                id: optionId[index]
+                id: optionName[index]
               },
               data: {
                 option: item
@@ -80,19 +79,22 @@ export default {
           } else {
             await prisma.createOption({
               option: item,
-              product: {
+              funding: {
                 connect: {
-                  id: productId
+                  id: fundingId
                 }
               }
             });
           }
         });
         return true;
-      } catch {
+      } catch (error){
+        console.log(error);
         return false;
       }
-    }
+    },
+    
+    
     
   }
 };

@@ -48,8 +48,8 @@ type Product {
   thumbnail: String
   productFiles: [ProductFile!] @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
   options: [Option!] @relation(name: "ProductOfOption", onDelete: CASCADE)
-  productDetailFile: [ProductDetailFile!] @relation(name: "FileOfProductDetail", onDelete: CASCADE)
   numberOfSales: Int! @default(value: 0)
+  tags: [Tag!]! @relation(name: "TagOfProduct", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfProduct", onDelete: CASCADE)
   commentproduct: [CommentProduct!]! @relation(name: "CommentProudctOfProduct", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
@@ -57,7 +57,7 @@ type Product {
   payment: [Payment!]! @relation(name: "ProductOfPayment", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
-}
+} 
 
 type ProductFile {
   id: ID! @id
@@ -65,10 +65,33 @@ type ProductFile {
   product: Product! @relation(name: "ProductFileOfProduct")
 }
 
-type ProductDetailFile {
+type Funding {
   id: ID! @id
-  productDetailFile: String! 
-  product: Product! @relation(name: "FileOfProductDetail")
+  name: String! 
+  user: User! @relation(name: "FundingOfUser")
+  price: Int! 
+  targetAmount: Int!
+  dueDate: DateTime
+  currentAmount: Int 
+  numberOfParticipants: Int! @default(value: 0)
+  mainCategory: String! 
+  subCategory: String!
+  thumbnail: String
+  fundingFiles: [FundingFile!] @relation(name: "FundingFileOfFunding", onDelete: CASCADE)
+  options: [Option!] @relation(name: "FundingOfOption", onDelete: CASCADE)
+  tags: [Tag!]! @relation(name: "TagOfFunding", onDelete: CASCADE)
+  likes: [Like!]! @relation(name:"LikeOfFunding", onDelete: CASCADE)
+  cart: [Cart!]! @relation(name: "FundingOfCart", onDelete: CASCADE)
+  buyList: [BuyList!]! @relation(name: "FundingOfBuyList", onDelete: CASCADE)
+  payment: [Payment!]! @relation(name: "FundingOfPayment", onDelete: CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type FundingFile {
+  id: ID! @id
+  url: String! 
+  funding: Funding! @relation(name: "FundingFileOfFunding")
 }
 
 type AdminFile {
@@ -78,12 +101,11 @@ type AdminFile {
 
 type Option {
   id: ID! @id
-  option1: String @default(value:"")
-  price1: Int @default(value:0)
-  option2: String
-  price2: Int
-  product: Product! @relation(name:"ProductOfOption")
-  cart: [Cart!]! @relation(name: "CartOfOption")
+  optionName: String! @default(value:"")
+  optionprice: Int @default(value:0)
+  product: Product @relation(name:"ProductOfOption")
+  funding: Funding @relation(name:"FundingOfOption")
+  cart: [Cart!] @relation(name: "CartOfOption")
   payment: [Payment!] @relation(name: "PaymentOfOption")
   buyList: [BuyList!] @relation(name:"BuyListOfOption")
 }
@@ -137,7 +159,7 @@ type Post {
   files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfPost", onDelete: CASCADE)
-  tags: [Tag!]!
+  tags: [Tag!]! @relation(name: "TagOfPost", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -151,7 +173,7 @@ type WikiPost {
   text: String
   likes: [Like!]! @relation(name:"LikeOfWikiPost", onDelete: CASCADE)
   wikicomments: [WikiComment!]! @relation(name: "WikiCommentsOfWikiPost", onDelete: CASCADE)
-  tags: [Tag!]!
+  tags: [Tag!] @relation(name: "TagOfWikiPost", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -211,9 +233,12 @@ type WikiComment {
 type Tag {
   id: ID! @id
   text: String!
-  category1: String
-  category2: String
-  category3: String
+  mainCategory: Boolean
+  subCategory: Boolean
+  post: Post @relation(name: "TagOfPost", onDelete: CASCADE)
+  wiikiPost: WikiPost @relation(name: "TagOfWikiPost", onDelete: CASCADE)
+  product: Product @relation(name: "TagOfProduct", onDelete: CASCADE)
+  funding: Funding @relation(name: "TagOfFunding", onDelete: CASCADE)
 }
 
 type MemberTag {

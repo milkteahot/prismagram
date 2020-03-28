@@ -8,7 +8,7 @@ export default {
 
             if(cart === undefined) {
                 try {
-                    await count.map(async(item, index) => {
+                    const payment = await count.map(async(item, index) => {
                         const countId = await prisma.createCount({
                             count: item
                         }); 
@@ -28,16 +28,18 @@ export default {
                                     id: countId.id
                                 }
                             }
-                        })
+                        });
+                        // return payment;
                     })
-                    return true;
+                    return payment;
                 } catch (error) {
                     console.log(error);
-                    return false; 
+                    return true; 
                 }
+                // return payment;
             } else {
                 try {
-                    await count.map(async(item, index) => {
+                    const payment = await count.map(async(item, index) => {
                         const countId = await prisma.createCount({
                             count: item
                         }); 
@@ -62,14 +64,17 @@ export default {
                                     id: cart[index]
                                 }
                             }
-                        })
+                        });
+                        // return payment;
                     })
-                    return true;
+                    return payment;
                 } catch (error) {
                     console.log(error);
                     return false; 
                 }
             }
+            // return payment;
         }
+        
     }
 }

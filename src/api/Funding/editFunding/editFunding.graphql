@@ -1,0 +1,43 @@
+type Mutation {
+    editFunding (
+        id: String! 
+        name: String 
+        price: Int
+        targetAmount: Int!
+        dueDate: DateTime
+        currentAmount: Int 
+        numberOfParticipants: Int!
+        mainCategory: String 
+        subCategory: String 
+        thumbnail: String
+    ): Funding!
+}
+
+type Mutation {
+    editNumberOfParticipants (
+        id: [String!]! 
+        pplCount: [Int!]!
+    ): Boolean! 
+}
+
+type Mutation {
+    editFundingFile (
+        FundingFileId: String 
+        FundingFile: [String] 
+    ): Boolean!
+}
+
+
+type Mutation {
+    editOption (
+        FundingId: String
+        optionName: [String!] 
+        optionprice: [Int]
+    ): Boolean! 
+}
+
+type Option {
+    id: ID!
+    optionName: String!
+    optionprice: Int
+}

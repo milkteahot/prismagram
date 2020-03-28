@@ -6,7 +6,6 @@ type Mutation {
         subCategory: String!
         thumbnail: String
         productFiles: [String]
-        productDetailFile: [String] 
         options: [String!]
     ): Product! 
 }

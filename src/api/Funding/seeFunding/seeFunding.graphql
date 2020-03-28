@@ -1,0 +1,28 @@
+type Query {
+    seeFunding(
+        id: String
+        sort: String 
+        mainCategory: String 
+        subCategory: String 
+    ): [Funding!]!
+}
+
+type Mutation {
+    seeFundingBest(
+        id: String
+        sort: String! 
+        mainCategory: String
+        subCategory: String
+    ): [Funding!]!
+} 
+
+type Mutation {
+    seeFundingAll(
+        id: String 
+        sort: String!
+        mainCategory: String
+        subCategory: String 
+        first: Int 
+        skip: Int
+    ): [Funding!]!
+}

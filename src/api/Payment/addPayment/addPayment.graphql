@@ -1,7 +1,7 @@
 type Mutation {
     addPayment(
-        product: [String!]
+         product: [String!]
         count: [Int!]
         cart: [String!]
-    ):Boolean!
+    ):Payment!
 }

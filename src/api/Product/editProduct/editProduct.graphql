@@ -5,6 +5,7 @@ type Mutation {
         price: Int
         mainCategory: String 
         subCategory: String 
+        thumbnail: String
     ): Product!
 }
 
@@ -29,11 +30,4 @@ type Mutation {
         optionId: [String] 
         optionValue: [String] 
     ): Boolean! 
-}
-
-type Mutation {
-    editProductDetailFile (
-        id: String! 
-        productDetailFile: String!
-    ): Product! 
 }

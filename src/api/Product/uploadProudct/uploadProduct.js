@@ -49,19 +49,6 @@ export default {
     //     })
     // });
 
-    //   productDetailFile.forEach(async productDetailFile => {
-    //     await prisma.createProductDetailFile({
-    //       data: {
-    //         productDetailFile,
-    //         product: {
-    //           connect: {
-    //             id: product.id
-    //           }
-    //         }
-    //       }
-    //     });
-    //   });
-    //   console.log(product);
       return product
     }
   }

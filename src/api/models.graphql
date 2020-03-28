@@ -50,8 +50,8 @@ type Product {
   thumbnail: String
   productFiles: [ProductFile!]
   options: [Option!]
-  productDetailFile: [ProductDetailFile!]
   numberOfSales: Int!
+  tags: [Tag!]! 
   likes: [Like!]!
   commentproduct: [CommentProduct!]!
   isLiked: Boolean
@@ -67,10 +67,36 @@ type ProductFile {
   product: Product! 
 }
 
-type ProductDetailFile {
+type Funding {
   id: ID! 
-  productDetailFile: String! 
-  product: Product! 
+  name: String! 
+  user: User! 
+  price: Int! 
+  targetAmount: Int!
+  dueDate: DateTime
+  currentAmount: Int 
+  numberOfParticipants: Int! 
+  mainCategory: String! 
+  subCategory: String!
+  thumbnail: String
+  fundingFiles: [FundingFile!] 
+  options: [Option!] 
+  tags: [Tag!]! 
+  likes: [Like!]! 
+  isLiked: Boolean
+  likeCount: Int!
+  commentCount: Int!
+  cart: [Cart!]! 
+  buyList: [BuyList!]! 
+  payment: [Payment!]! 
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
+}
+
+type FundingFile {
+  id: ID! 
+  url: String! 
+  funding: Funding!
 }
 
 type AdminFile {
@@ -80,12 +106,11 @@ type AdminFile {
 
 type Option {
   id: ID! 
-  option1: String! 
-  price1: Int!
-  option2: String
-  price2: Int
-  product: Product!
-  cart: Cart!
+  optionName: String! 
+  optionprice: Int
+  product: Product
+  funding: Funding
+  cart: Cart
   payment: Payment
   buyList: BuyList
 }
@@ -160,7 +185,7 @@ type WikiPost {
   isLiked: Boolean
   likeCount: Int!
   commentCount: Int!
-  tags: [Tag!]!
+  tags: [Tag!]
   createdAt: String
   updatedAt: String
 }
@@ -220,12 +245,15 @@ type WikiComment {
 type Tag {
   id: ID!
   text: String!
-  category1: String
-  category2: String
-  category3: String
+  mainCategory: Boolean
+  subCategory: Boolean
+  post: Post
+  wiikiPost: WikiPost
+  product: Product
+  funding: Funding
 }
 
-type MemberTag {
+type MemberTag {  
   id: ID!
   text: String! 
   member: Member!
