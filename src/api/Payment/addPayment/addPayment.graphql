@@ -3,5 +3,5 @@ type Mutation {
          product: [String!]
         count: [Int!]
         cart: [String!]
-    ):Payment!
+    ):Boolean!
 }
