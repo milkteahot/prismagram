@@ -12,10 +12,11 @@ type Mutation {
         fundingFiles: [String]
         options: [String!]
         tags: [String!] 
+        text: String
     ): Funding! 
 }
 
-type Option {
+type FundingoptionsOption {
     id: ID!
     optionName: String!
     optionprice: Int

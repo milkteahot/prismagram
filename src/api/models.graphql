@@ -4,6 +4,7 @@ type User {
   id: ID!
   avatar: String 
   storyImg: String
+  storeImg: String
   userName: String!
   email: String!
   nickName: String!
@@ -72,6 +73,7 @@ type Funding {
   name: String! 
   user: User! 
   price: Int! 
+  text: String
   targetAmount: Int!
   dueDate: DateTime
   currentAmount: Int 

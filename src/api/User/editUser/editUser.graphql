@@ -9,5 +9,6 @@ type Mutation {
     tag3: String
     avatar: String
     storyImg: String
+    storeImg: String
     ) : User!
 }

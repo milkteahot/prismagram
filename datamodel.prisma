@@ -4,6 +4,7 @@ type User {
       value: "https://scontent-hkg3-1.cdninstagram.com/vp/51ea9f9……74447047_1561961433825017856_n.jpg?_nc_ht=scontent-hkg3-1.cdninstagram.com"
     )
   storyImg: String 
+  storeImg: String
   userName: String! @unique
   email: String! @unique
   nickName: String!
@@ -70,6 +71,7 @@ type Funding {
   name: String! 
   user: User! @relation(name: "FundingOfUser")
   price: Int! 
+  text: String
   targetAmount: Int!
   dueDate: DateTime
   currentAmount: Int 

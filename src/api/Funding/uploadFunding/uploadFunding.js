@@ -16,6 +16,7 @@ export default {
         subCategory,
         thumbnail,
         fundingFiles,
+        text,
       } = args;
       // file과 option 없이 funding 생성
       const funding = await prisma.createFunding({
@@ -28,6 +29,7 @@ export default {
         mainCategory,
         subCategory,
         thumbnail,
+        text,
         user: { connect: { id: user.id } }
       });
       const exists = args.fundingFiles;
@@ -46,14 +48,15 @@ export default {
     }
     //   options.forEach(async option => {
     //     await prisma.createOption({
-          
-    //         option,
+    //       data: {
+    //         optionName: option,
+    //         optionprice,
     //         funding: {
     //           connect: {
     //             id: funding.id
     //           }
     //         }
-          
+    //       }
     //     })
     // });
 
