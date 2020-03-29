@@ -25,7 +25,7 @@ export default {
     //   return posts.slice(index, index + 1)
     // }
   },
-  Mutation: {
+  Query: {
     seeFeedAll: async(_, args) => {
       const { id, first, skip, after } = args;
       

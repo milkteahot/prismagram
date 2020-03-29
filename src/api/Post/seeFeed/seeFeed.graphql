@@ -6,7 +6,7 @@ type Query {
     : [Post!]!
 }
 
-type Mutation {
+type Query {
     seeFeedAll(
         id: String
         first: Int
