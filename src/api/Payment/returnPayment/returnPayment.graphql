@@ -1,0 +1,7 @@
+type Mutation {
+    returnPayment(
+         product: [String]
+        count: [Int]
+        cart: [String]
+    ):Payment
+}

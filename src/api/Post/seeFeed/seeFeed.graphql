@@ -1,3 +1,22 @@
+
+
+
 type Query {
-    seeFeed: [Post!]! 
+    postsOffsetPagination (first: Int, after: Int)
+    : [Post!]!
 }
+
+type Mutation {
+    seeFeedAll(
+        id: String
+        first: Int
+        after: Int
+        skip: Int
+    ): [Post!]!
+}
+
+type Query {
+    seeFeed: [Post!]!
+}
+
+
