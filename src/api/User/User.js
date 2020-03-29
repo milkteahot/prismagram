@@ -5,6 +5,8 @@ export default {
     cart: ({ id }) => prisma.user({ id }).cart(),
     buyList: ({ id }) => prisma.user({ id }).buyList(),
     posts: ({ id }) => prisma.user({ id }).posts(),
+    products: ({ id }) => prisma.user({ id }).products(),
+    funding: ({ id }) => prisma.user({ id }).funding(),
     members: ({ id }) => prisma.user({ id }).members(),
     following: ({ id }) => prisma.user({ id }).following(),
     followers: ({ id }) => prisma.user({ id }).followers(),

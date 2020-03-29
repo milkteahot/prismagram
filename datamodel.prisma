@@ -14,6 +14,7 @@ type User {
   addressDetail: String
   phone: String
   products: [Product!]! @relation(name: "ProductOfUser", onDelete: CASCADE)
+  funding: [Funding!]!@relation(name: "FundingOfUser", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "UserOfCart", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "UserOfPayment", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "UserOfBuyList", onDelete: CASCADE)
