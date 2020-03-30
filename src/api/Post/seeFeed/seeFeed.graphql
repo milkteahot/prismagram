@@ -10,7 +10,15 @@ type Query {
     seeFeedAll(
         id: String
         first: Int
-        after: Int
+        skip: Int
+    ): [Post!]!
+}
+
+type Query {
+    seeFeedAnother(
+        id: String
+        userName: String
+        first: Int
         skip: Int
     ): [Post!]!
 }

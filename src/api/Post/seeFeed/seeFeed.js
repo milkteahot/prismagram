@@ -17,6 +17,27 @@ export default {
       });
     },
 
+    seeFeedAnother: async(_, args) => {
+      const { id, userName, first, skip } = args;
+      
+      if( id !== undefined) {
+        // const index = await prisma.posts.map(m => m.id).indexOf(skip)+1
+        const posts = await prisma.posts({ 
+          where: {user:userName},
+          orderBy: "createdAt_DESC",
+          first,
+          skip
+        })
+        // .slice(index, index+1);
+        return posts;
+      }
+      
+      return prisma.posts({
+        orderBy: "createdAt_DESC",
+        first,
+        skip
+      })
+
     
     // postsOffsetPagination: async (root, {first, after}, ctx, info) => {
     //   const posts = await prisma.posts({
@@ -27,9 +48,9 @@ export default {
     //   return posts.slice(index, index + 1)
     // }
   },
-  Query: {
+  
     seeFeedAll: async(_, args) => {
-      const { id, first, skip, after } = args;
+      const { id, first, skip } = args;
       
       if( id !== undefined) {
         // const index = await prisma.posts.map(m => m.id).indexOf(skip)+1

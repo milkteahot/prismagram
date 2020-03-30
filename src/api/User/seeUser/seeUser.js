@@ -4,7 +4,12 @@ export default {
   Query: {
     seeUser: async (_, args) => {
       const { userName } = args;
-      return prisma.user({ userName });
+      return prisma.users({ 
+        where:{userName: userName},
+        orderBy: "createdAt_DESC",
+        
+       });
+      
     },
     users: async(_, __) => {
       return prisma.users({
