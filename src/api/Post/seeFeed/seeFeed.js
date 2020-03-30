@@ -16,6 +16,8 @@ export default {
         orderBy: "createdAt_DESC"
       });
     },
+
+    
     // postsOffsetPagination: async (root, {first, after}, ctx, info) => {
     //   const posts = await prisma.posts({
     //     orderBy: "createdAt_DESC",

@@ -4,6 +4,7 @@ type User {
   id: ID!
   avatar: String 
   storyImg: String
+  charHomeImg: String
   storeImg: String
   userName: String!
   email: String!
