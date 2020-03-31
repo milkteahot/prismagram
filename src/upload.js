@@ -7,6 +7,11 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.AWS_SECRET,
   region: "ap-northeast-2"
 });
+
+var AWS = require('aws-sdk');
+AWS.config.credentials = new AWS.EC2MetadataCredentials({
+  httpOptions: { timeout: 4000 }
+});
  
 // const upload = multer({ dest: "uploads/" });
 const upload = multer({
