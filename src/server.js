@@ -17,6 +17,10 @@ const server = new GraphQLServer({
 
 server.express.use(logger("dev"));
 server.express.use(authenticateJwt);
+server.express.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+       next();
+ });
 server.express.post("/api/upload", uploadMiddleware, uploadController);
 server.express.post("/api/payments/complete", paymentController);
 
