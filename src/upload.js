@@ -8,20 +8,20 @@ const s3 = new aws.S3({
   region: "ap-northeast-2"
 });
  
-const upload = multer({ dest: "uploads/" });
-// const upload = multer({
-//   storage: multerS3({
-//     s3,
-//     acl: "public-read",
-//     bucket: "catcher-test2",
-//     metadata: function(req, file, cb) {
-//       cb(null, { fieldName: file.fieldName });
-//     },
-//     key: function(req, file, cb) {
-//       cb(null, Date.now().toString());
-//     }
-//   })
-// });
+// const upload = multer({ dest: "uploads/" });
+const upload = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "catcher-test2",
+    metadata: function(req, file, cb) {
+      cb(null, { fieldName: file.fieldName });
+    },
+    key: function(req, file, cb) {
+      cb(null, Date.now().toString());
+    }
+  })
+});
 
 export const uploadMiddleware = upload.single("file");
 
@@ -31,8 +31,8 @@ export const uploadController = (req, res) => {
     // file: { location }
   
   console.log(file);
-  res.end();
+  // res.end();
   //res.json({path: "jlkjlk"});
   // res.json({ path });
-  // res.json({ location });
+  res.json({ path:"jlkjl" });
 };
