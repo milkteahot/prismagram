@@ -66,11 +66,15 @@ export const uploadController = (req, res, err) => {
   // res.end();
   //res.json({path: "jlkjlk"});
   // res.json({ path });
-  if(err) {
-    return res.json({ success: false, err })
-  }
+  // if(err) {
+  //   return res.json({ success: false, err })
+  // }
+  try {
   console.log(res.req.file.path)
   return res.json({ success:true, url: path })
+  }catch(e){
+    console.log(e)
+  }
 
   // res.end();
   
