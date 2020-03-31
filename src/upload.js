@@ -32,6 +32,6 @@ export const uploadController = (req, res) => {
   } = req;
   console.log(file);
   //res.json({path: "jlkjlk"});
-  res.json({ path: "hihi" });
+  res.json({ path });
   // res.json({ location });
 };
