@@ -1,6 +1,7 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
+var path = require('path');
 
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
@@ -53,14 +54,15 @@ export const uploadController = (req, res, err) => {
 
   
   const {
-    file
-    // : { path }
+    file 
   //   // file: { location }
   } = req;
+  const path = req.file.path
   console.log(file);
   console.log(req.file.path);
   console.log(res.req.file.path);
   console.log(path);
+  // console.log(path);
   // res.end();
   //res.json({path: "jlkjlk"});
   // res.json({ path });
