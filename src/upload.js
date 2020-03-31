@@ -12,7 +12,26 @@ const s3 = new aws.S3({
 // AWS.config.credentials = new AWS.EC2MetadataCredentials({
 //   httpOptions: { timeout: 4000 }
 // });
- 
+
+ //Storage multer config
+// let storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//       cb(null, "uploads/");
+//   },
+//   filename: (req, file, cb) => {
+//       cb(null, `${Date.now()}_${file.originalname}`);
+//   },
+//   fileFilter: (req, file, cb) => {
+//       const ext = path.extname(file.originalname)
+//       if(ext !== '.mp4' || ext !== '.png'|| ext !== '.jpg' || ext !== '.gif') {
+//           return cb(res.status(400).end('only mp4, png, jpg is allowed'), false);
+//       }
+//       cb(null, true)
+//   }
+// });
+
+// const upload = multer({ storage: storage }).single("file");
+
 const upload = multer({ dest: "uploads/" });
 // const upload = multer({
 //   storage: multerS3({
@@ -30,16 +49,22 @@ const upload = multer({ dest: "uploads/" });
 
 export const uploadMiddleware = upload.single("file");
 
-export const uploadController = (req, res) => {
+export const uploadController = (req, res, err) => {
+
   const {
-    file
-    // : { path }
-    // file: { location }
+    file: { path }
+  //   // file: { location }
   } = req;
   console.log(file);
   // res.end();
   //res.json({path: "jlkjlk"});
-  // res.json({ path });
-  res.end();
+  res.json({ path });
+  if(err) {
+    return res.json({ success: false, err })
+  }
+  console.log(res.req.file.path)
+  return res.json({ success:true, url: res.req.file.path, fileName: res.req.file.filename })
+
+  // res.end();
   
 };
