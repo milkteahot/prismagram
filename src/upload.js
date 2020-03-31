@@ -1,20 +1,18 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
-// import aws from "aws-sdk";
+import aws from "aws-sdk";
 var path = require('path');
 
-var AWS = require('aws-sdk');
-AWS.config.credentials = new AWS.EC2MetadataCredentials({
-  httpOptions: { timeout: 4000 }
-});
+// var AWS = require('aws-sdk');
+// AWS.config.credentials = new AWS.EC2MetadataCredentials({
+//   httpOptions: { timeout: 4000 }
+// });
 
-const s3 = new AWS.S3({
+const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_SECRET,
   region: "ap-northeast-2"
 });
-
-
 
  //Storage multer config
 // let storage = multer.diskStorage({
@@ -36,19 +34,35 @@ const s3 = new AWS.S3({
 // const upload = multer({ storage: storage }).single("file");
 
 // const upload = multer({ dest: "uploads/" });
-const upload = multer({
-  storage: multerS3({
-    s3,
-    acl: "public-read-write",
-    bucket: "catcher-test2",
-    metadata: function(req, file, cb) {
-      cb(null, { fieldName: file.fieldName });
-    },
-    key: function(req, file, cb) {
-      cb(null, Date.now().toString());
-    }
-  })
-});
+// const upload = multer({
+//   storage: multerS3({
+//     s3: s3,
+//     acl: "public-read-write",
+//     bucket: "catcher-test2",
+//     metadata: function(req, file, cb) {
+//       cb(null, { fieldName: file.fieldName });
+//     },
+//     key: function(req, file, cb) {
+//       cb(null, Date.now().toString());
+//     }
+//   })
+// });
+
+let s3storage = multerS3({
+  s3: s3,
+  bucket: "catcher-test2",
+  key: function(req, file, cb) {
+    let extension = path.extname(file.originalname);
+    let basename = path.basename(file.originalname, extension);
+    cb(null, Date.now().toString());
+  },
+  acl: 'public-read-write',
+  contentDisposition: 'attachment',
+  serverSideEncryption: 'AES256'
+})
+
+// export const uploadMiddleware = upload.single("file");
+const upload = multer({ storage: s3storage });
 
 export const uploadMiddleware = upload.single("file");
 
@@ -57,10 +71,10 @@ export const uploadController = (req, res, err) => {
   
   const {
     file 
-  //   // file: { location }
+    // file: { location }
   } = req;
   // const location = req.file.location
-  console.log(req);
+  console.log(file);
   // console.log(req.file.location);
   // console.log(res.req.file.location);
   // console.log(req.file.path);
