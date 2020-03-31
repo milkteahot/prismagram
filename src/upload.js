@@ -8,16 +8,16 @@ const s3 = new aws.S3({
   region: "ap-northeast-2"
 });
 
-var AWS = require('aws-sdk');
-AWS.config.credentials = new AWS.EC2MetadataCredentials({
-  httpOptions: { timeout: 4000 }
-});
+// var AWS = require('aws-sdk');
+// AWS.config.credentials = new AWS.EC2MetadataCredentials({
+//   httpOptions: { timeout: 4000 }
+// });
  
 // const upload = multer({ dest: "uploads/" });
 const upload = multer({
   storage: multerS3({
     s3,
-    acl: "public-read",
+    // acl: "public-read",
     bucket: "catcher-test2",
     metadata: function(req, file, cb) {
       cb(null, { fieldName: file.fieldName });
@@ -31,16 +31,18 @@ const upload = multer({
 export const uploadMiddleware = upload.single("file");
 
 export const uploadController = (req, res) => {
-  const {file} = req;
+  const {
+    // file
     // : { path }
-    // file: { location }
-  
+    file: { location }
+  } = req;
   console.log(file);
   // res.end();
   //res.json({path: "jlkjlk"});
   // res.json({ path });
   try {
-    res.json({ path:"jlkjl" });
+    // res.json({ path:"jlkjl" });
+    res.json({ location });
   } catch(e) {
     res.send(e);
 }
