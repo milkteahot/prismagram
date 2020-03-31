@@ -1,25 +1,32 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
-import aws from "aws-sdk";
+// import aws from "aws-sdk";
 import { response } from "express";
+import path from 'path'
 
-const s3 = new aws.S3({
+var AWS = require('aws-sdk');
+AWS.config.credentials = new AWS.EC2MetadataCredentials({
+  httpOptions: { timeout: 4000 }
+});
+
+const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_SECRET,
   region: "ap-northeast-2"
 });
 
+
+
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    acl: "public-read",
     bucket: "catcher-test2",
     // metadata: function(req, file, cb) {
     //   cb(null, { fieldName: file.fieldName });
     // },
     key: function(req, file, cb) {
-      console.log(file);
-      cb(null, Date.now().toString());
+      let extension = path.extname(file.originalname);
+      cb(null, Date.now().toString()+extension);
     }
   }),
   limits: {fileSize: 5 * 1024 * 1024}
