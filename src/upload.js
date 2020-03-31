@@ -33,20 +33,20 @@ const s3 = new aws.S3({
 
 // const upload = multer({ storage: storage }).single("file");
 
-const upload = multer({ dest: "uploads/" });
-// const upload = multer({
-//   storage: multerS3({
-//     s3,
-//     // acl: "public-read",
-//     bucket: "catcher-test2",
-//     metadata: function(req, file, cb) {
-//       cb(null, { fieldName: file.fieldName });
-//     },
-//     key: function(req, file, cb) {
-//       cb(null, Date.now().toString());
-//     }
-//   })
-// });
+// const upload = multer({ dest: "uploads/" });
+const upload = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "catcher-test2",
+    metadata: function(req, file, cb) {
+      cb(null, { fieldName: file.fieldName });
+    },
+    key: function(req, file, cb) {
+      cb(null, Date.now().toString());
+    }
+  })
+});
 
 export const uploadMiddleware = upload.single("file");
 
@@ -57,11 +57,14 @@ export const uploadController = (req, res, err) => {
     file 
   //   // file: { location }
   } = req;
-  const path = req.file.path
+  const location = req.file.location
   console.log(file);
+  console.log(req.file.location);
+  console.log(res.req.file.location);
   console.log(req.file.path);
   console.log(res.req.file.path);
-  console.log(path);
+  console.log(location);
+
   // console.log(path);
   // res.end();
   //res.json({path: "jlkjlk"});
@@ -70,8 +73,8 @@ export const uploadController = (req, res, err) => {
   //   return res.json({ success: false, err })
   // }
   try {
-  console.log(res.req.file.path)
-  return res.json({ path })
+  console.log(res.req.file.location)
+  return res.json({ location })
   }catch(e){
     console.log(e)
   }
