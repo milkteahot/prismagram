@@ -26,12 +26,13 @@ const upload = multer({ dest: "uploads/" });
 export const uploadMiddleware = upload.single("file");
 
 export const uploadController = (req, res) => {
-  const {
-    file: { path }
+  const {file} = req;
+    // : { path }
     // file: { location }
-  } = req;
+  
   console.log(file);
+  res.end();
   //res.json({path: "jlkjlk"});
-  res.json({ path });
+  // res.json({ path });
   // res.json({ location });
 };
