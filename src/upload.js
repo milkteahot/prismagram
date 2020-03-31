@@ -57,13 +57,13 @@ export const uploadController = (req, res, err) => {
     file 
   //   // file: { location }
   } = req;
-  const location = req.file.location
+  // const location = req.file.location
   console.log(file);
-  console.log(req.file.location);
-  console.log(res.req.file.location);
-  console.log(req.file.path);
-  console.log(res.req.file.path);
-  console.log(location);
+  // console.log(req.file.location);
+  // console.log(res.req.file.location);
+  // console.log(req.file.path);
+  // console.log(res.req.file.path);
+  // console.log(location);
 
   // console.log(path);
   // res.end();
