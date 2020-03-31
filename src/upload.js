@@ -6,7 +6,7 @@ import path from 'path'
 
 var AWS = require('aws-sdk');
 AWS.config.credentials = new AWS.EC2MetadataCredentials({
-  httpOptions: { timeout: 4000 }
+  httpOptions: { timeout: 6000 }
 });
 
 const s3 = new AWS.S3({
