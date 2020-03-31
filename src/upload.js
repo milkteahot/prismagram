@@ -13,38 +13,33 @@ const s3 = new aws.S3({
 //   httpOptions: { timeout: 4000 }
 // });
  
-// const upload = multer({ dest: "uploads/" });
-const upload = multer({
-  storage: multerS3({
-    s3,
-    // acl: "public-read",
-    bucket: "catcher-test2",
-    metadata: function(req, file, cb) {
-      cb(null, { fieldName: file.fieldName });
-    },
-    key: function(req, file, cb) {
-      cb(null, Date.now().toString());
-    }
-  })
-});
+const upload = multer({ dest: "uploads/" });
+// const upload = multer({
+//   storage: multerS3({
+//     s3,
+//     // acl: "public-read",
+//     bucket: "catcher-test2",
+//     metadata: function(req, file, cb) {
+//       cb(null, { fieldName: file.fieldName });
+//     },
+//     key: function(req, file, cb) {
+//       cb(null, Date.now().toString());
+//     }
+//   })
+// });
 
 export const uploadMiddleware = upload.single("file");
 
 export const uploadController = (req, res) => {
   const {
-    // file
+    file
     // : { path }
-    file: { location }
+    // file: { location }
   } = req;
   console.log(file);
   // res.end();
   //res.json({path: "jlkjlk"});
   // res.json({ path });
-  try {
-    // res.json({ path:"jlkjl" });
-    res.json({ location });
-  } catch(e) {
-    res.send(e);
-}
+  res.end();
   
 };
