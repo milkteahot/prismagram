@@ -4,5 +4,6 @@ type Mutation {
         caption:String! 
         files: [String!]!
         thumbnail: String
+        tags: [String]
     ) : Post!
 }
