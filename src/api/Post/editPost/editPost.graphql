@@ -14,8 +14,8 @@ type Mutation {
 
 type Mutation {
     editTag (
-        postId: String
+        postId: String!
         tagId: [String]
-        text: [String]
+        text: [String!]!
     ): Boolean!
 }

@@ -29,7 +29,7 @@ export default {
             const { postId, tagId, text } = args;
             try {
                 text.map(async (item, index) => {
-                    if(tagId.length > index) {
+                    if(tagId !== undefined) {
                         await prisma.updateTag({
                             where: {
                                 id: tagId[index]
