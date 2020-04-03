@@ -24,6 +24,36 @@ export default {
                 throw Error("You can't do that");
             }
             
+        },
+        editTag: (_, args) => {
+            const { postId, tagId, text } = args;
+            try {
+                text.map(async (item, index) => {
+                    if(tagId.length > index) {
+                        await prisma.updateTag({
+                            where: {
+                                id: tagId[index]
+                            },
+                            data: {
+                                text: item
+                            }
+                        });
+                    } else {
+                        await prisma.createTag({
+                            text: item,
+                            post: {
+                                connect: {
+                                    id: postId
+                                }
+                            }
+                        });
+                    }
+                });
+                return true;
+            } catch {
+                return false;
+            }
         }
+
     }
 }

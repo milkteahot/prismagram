@@ -11,3 +11,11 @@ type Mutation {
         action: ACTIONS!
     ): Post!
 }
+
+type Mutation {
+    editTag (
+        postId: String
+        tagId: [String]
+        text: [String]
+    ): Boolean!
+}
