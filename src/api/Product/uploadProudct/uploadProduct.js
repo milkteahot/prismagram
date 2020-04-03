@@ -11,7 +11,8 @@ export default {
         mainCategory,
         subCategory,
         thumbnail,
-        productFiles
+        productFiles,
+        options,
       } = args;
       // file과 option 없이 product 생성
       const product = await prisma.createProduct({
@@ -31,24 +32,22 @@ export default {
           product: {
             connect: {
               id: product.id
+              }
             }
-          }
+          });
         });
-      });
-    }
-    //   options.forEach(async option => {
-    //     await prisma.createOption({
-          
-    //         option,
-    //         product: {
-    //           connect: {
-    //             id: product.id
-    //           }
-    //         }
-          
-    //     })
-    // });
-
+      }
+      options.forEach(
+        async option => 
+        await prisma.createOption({
+            optionName: option,
+            product: {
+              connect: {
+                id: product.id
+              }
+            }
+          })
+        );
       return product
     }
   }

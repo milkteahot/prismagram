@@ -12,6 +12,8 @@ export default {
         thumbnail,
         user: { connect: { id: user.id } }
       });
+      const exists = args.files;
+      if(exists != null) {
       files.forEach(
         async file =>
           await prisma.createFile({
@@ -22,7 +24,10 @@ export default {
               }
             }
           })
-      );
+        );
+      }
+      const tagexists = args.tags;
+      if(tagexists != null) {
       tags.forEach(
         async tag => 
           await prisma.createTag({
@@ -33,7 +38,8 @@ export default {
               }
             }
         })
-      );
+        );
+      }
       return post;
     }
   }

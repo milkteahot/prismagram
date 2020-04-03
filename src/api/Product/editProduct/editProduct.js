@@ -65,21 +65,23 @@ export default {
     },
     // 옵션 수정
     editOption: (_, args) => {
-      const { productId, optionId, optionValue } = args;
+      const { productId, optionId, optionName, optionPrice } = args;
       try {
-        optionValue.map(async (item, index) => {
+        optionName.map(async (item, index) => {
           if (optionId.length > index) {
             await prisma.updateOption({
               where: {
                 id: optionId[index]
               },
               data: {
-                option: item
+                optionName: item,
+                optionprice: optionPrice
               }
             });
           } else {
             await prisma.createOption({
-              option: item,
+              optionName: item,
+              optionprice: optionPrice,
               product: {
                 connect: {
                   id: productId

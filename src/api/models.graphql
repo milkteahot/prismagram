@@ -166,7 +166,7 @@ type Post {
   caption: String!
   user: User!
   thumbnail: String 
-  files: [File!]!
+  files: [File]
   likes: [Like!]!
   comments: [Comment!]!
   isLiked: Boolean!
