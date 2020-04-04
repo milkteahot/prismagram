@@ -12,14 +12,16 @@ import path from 'path'
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_SECRET,
-  region: "us-west-1"
+  region: "ap-northeast-2"
+  // region: "us-west-1"
 });
 
 const upload = multer({
   storage: multerS3({
     s3: s3,
     acl: "public-read-write",
-    bucket: "catcher-us-west",
+    // bucket: "catcher-us-west",
+    bucket: "catcher-test2",
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },
