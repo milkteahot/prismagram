@@ -17,12 +17,12 @@ const s3 = new aws.S3({
 
 const upload = multer({
   storage: multerS3({
-    s3,
+    s3: s3,
     acl: "public-read-write",
     bucket: "catcher-test2",
-    // metadata: (req, file, cb) => {
-    //   cb(null, { fieldName: file.fieldname });
-    // },
+    metadata: (req, file, cb) => {
+      cb(null, { fieldName: file.fieldname });
+    },
     key: (req, file, cb) => {
       let extension = path.extname(file.originalname);
       cb(null, Date.now().toString()+extension);
