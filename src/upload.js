@@ -12,7 +12,7 @@ import path from 'path'
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_SECRET,
-  region: "ap-northeast-2"
+  region: "us-west-1"
 });
 
 const upload = multer({
