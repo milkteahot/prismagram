@@ -17,8 +17,7 @@ const s3 = new aws.S3({
 
 const upload = multer({
   storage: multerS3({
-    s3: s3,
-    acl: 'public-read-write',
+    s3,
     bucket: "catcher-test2",
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
@@ -28,7 +27,7 @@ const upload = multer({
       cb(null, Date.now().toString()+extension);
     }
   }),
-  limits: {fileSize: 5 * 1024 * 1024}
+  limits: {fileSize: 20 * 1024 * 1024}
 });
 
 export const uploadMiddleware = upload.array("file", 10);
