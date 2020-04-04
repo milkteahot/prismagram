@@ -31,13 +31,14 @@ const upload = multer({
   limits: {fileSize: 5 * 1024 * 1024}
 });
 
-export const uploadMiddleware = upload.single("file");
+export const uploadMiddleware = upload.array("file", 10);
 
 export const uploadController = (req, res, err) => {
 
   try{
-    const {file: { location }} = req;
-    // console.log("req.file: ", req.file)
+    // const {file: { location }} = req;
+    const location = req.files.map(v => v.location);
+    // console.log("req.files: ", req.files.map(v => v.location))
     res.json({ location });  
   } catch (err) {
     console.log(err);

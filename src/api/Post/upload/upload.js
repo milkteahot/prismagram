@@ -40,7 +40,11 @@ export default {
         })
         );
       }
+      if(post === null) {
+        throw new Error("post is null")
+      }
       return post;
+      
     }
   }
 };
