@@ -23,8 +23,8 @@ const upload = multer({
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },
-    contentType: multerS3.AUTO_CONTENT_TYPE,
-    contentDisposition: 'attachment',
+    // contentType: multerS3.AUTO_CONTENT_TYPE,
+    // contentDisposition: 'attachment',
     key: (req, file, cb) => {
       let extension = path.extname(file.originalname);
       cb(null, Date.now().toString()+extension);
