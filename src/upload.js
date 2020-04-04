@@ -19,11 +19,11 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     acl: "public-read-write",
-    bucket: "catcher-test2",
+    bucket: "catcher-us-west",
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },
-    contentType: multerS3.DEFAULT_CONTENT_TYPE,
+    // contentType: multerS3.DEFAULT_CONTENT_TYPE,
     // contentDisposition: 'attachment',
     key: (req, file, cb) => {
       let extension = path.extname(file.originalname);
