@@ -18,14 +18,16 @@ const s3 = new aws.S3({
 const upload = multer({
   storage: multerS3({
     s3,
+    acl: "public-read-write",
     bucket: "catcher-test2",
-    metadata: (req, file, cb) => {
-      cb(null, { fieldName: file.fieldname });
-    },
+    // metadata: (req, file, cb) => {
+    //   cb(null, { fieldName: file.fieldname });
+    // },
     key: (req, file, cb) => {
       let extension = path.extname(file.originalname);
       cb(null, Date.now().toString()+extension);
-    }
+    },
+    serverSideEncryption: 'AES256'
   }),
   limits: {fileSize: 20 * 1024 * 1024}
 });
@@ -34,14 +36,8 @@ export const uploadMiddleware = upload.array("file", 10);
 
 export const uploadController = (req, res, err) => {
 
-  try{
     // const {file: { location }} = req;
     const location = req.files.map(v => v.location);
     // console.log("req.files: ", req.files.map(v => v.location))
     res.json({ location });  
-  } catch (err) {
-    console.log(err);
-    response(res, 500, "이미지 업로드중 서버 에러")
-  }
-  
 };
