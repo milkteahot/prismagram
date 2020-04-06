@@ -11,3 +11,9 @@ type Mutation {
         phone: String
     ): Boolean!
 }
+
+type Query {
+    checkUserName(
+        userName: String!
+    ):Boolean!
+}

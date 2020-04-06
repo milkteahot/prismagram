@@ -38,5 +38,16 @@ export default {
     //   return true;
 
     }
+  },
+
+  Query: {
+    checkUserName: async(_, args) => {
+      const { userName } = args;
+      const existsUserName = await prisma.$exists.user({ userName });
+      if(existsUserName) {
+        return false;
+      }
+      return true; 
+    }
   }
 };
