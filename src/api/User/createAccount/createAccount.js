@@ -45,7 +45,7 @@ export default {
       const { userName } = args;
       const existsUserName = await prisma.$exists.user({ userName });
       if(existsUserName) {
-        return false;
+        return Error("this is already taken");
       }
       return true; 
     }
