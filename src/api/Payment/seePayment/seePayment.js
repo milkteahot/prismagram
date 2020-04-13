@@ -15,15 +15,17 @@ export default {
         }
     },
     Mutation: {
-        seePayment: (_, __, { request, isAuthenticated}) => {
+        seePayment: async(_, __, { request, isAuthenticated}) => {
             isAuthenticated(request);
             const { user } = request; 
-            return prisma.payments({
+            return await prisma.payments({
                 where: {
                     user: {
                         id: user.id 
                     }
-                }
+                },
+                orderBy: "createdAt_DESC",
+                first: 1
             })
         }
     }

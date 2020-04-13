@@ -158,6 +158,9 @@ type Payment {
   options: [Option!]
   count: [Count!]!
   cart: [Cart!]
+  amount: Int!
+  createdAt: DateTime! 
+  updatedAt: DateTime!
 }
 
 type Post {
@@ -173,8 +176,8 @@ type Post {
   likeCount: Int!
   commentCount: Int!
   tags: [Tag!]!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type WikiPost {
@@ -190,8 +193,8 @@ type WikiPost {
   likeCount: Int!
   commentCount: Int!
   tags: [Tag!]
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Member {
@@ -205,8 +208,8 @@ type Member {
   user: User! 
   files: [File!]! 
   wikifiles: [WikiFile!]!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Like {
@@ -215,8 +218,8 @@ type Like {
   post: Post
   wikipost: WikiPost
   product: Product
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Comment {
@@ -224,8 +227,8 @@ type Comment {
   text: String!
   user: User!
   post: Post!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type CommentProduct {
@@ -233,8 +236,8 @@ type CommentProduct {
   text: String!
   user: User!
   product: Product!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type WikiComment {
@@ -242,8 +245,8 @@ type WikiComment {
   text: String!
   user: User!
   wikipost: WikiPost!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Tag {
@@ -261,8 +264,8 @@ type MemberTag {
   id: ID!
   text: String! 
   member: Member!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type File {
@@ -270,8 +273,8 @@ type File {
   url: String!
   post: Post!
   member: Member
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type WikiFile {
@@ -279,16 +282,16 @@ type WikiFile {
   url: String!
   wikipost: WikiPost!
   member: Member
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Room {
   id: ID!
   participants: [User!]!
   messages: [Message!]!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Message {
@@ -297,6 +300,6 @@ type Message {
   from: User!
   to: User!
   room: Room!
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }

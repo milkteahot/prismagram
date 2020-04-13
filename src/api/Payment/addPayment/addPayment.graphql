@@ -2,6 +2,7 @@ type Mutation {
     addPayment(
          product: [String!]
         count: [Int!]
-        cart: [String!]
-    ):Boolean!
+        cart: [String]
+        amount: Int!
+    ): Boolean!
 }

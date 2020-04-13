@@ -151,7 +151,10 @@ type Payment {
   product: [Product!]! @relation(name: "ProductOfPayment")
   options: [Option!] @relation(name: "PaymentOfOption")
   count: [Count!]! @relation(name: "PaymentOfCount")
+  amount: Int!
   cart: [Cart!] @relation(name: "PaymentOfCart")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Post {

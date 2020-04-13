@@ -7,6 +7,7 @@ import { authenticateJwt } from "./passport";
 import { isAuthenticated } from "./middlewares";
 import { uploadMiddleware, uploadController } from "./upload";
 import { paymentController } from "./payment";
+import bodyParser, { json } from "body-parser";
 
 const PORT = process.env.PORT || 4000;
 
@@ -21,6 +22,8 @@ server.express.use(function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
        next();
  });
+ server.express.use(bodyParser.json());
+
 server.express.post("/api/upload", uploadMiddleware, uploadController);
 server.express.post("/api/payments/complete", paymentController);
 

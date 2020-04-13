@@ -1,10 +1,11 @@
 import { prisma } from "../../../../generated/prisma-client";
+import { printComment } from "@graphql-toolkit/schema-merging";
 
 export default {
     Mutation: {
         addPayment : async (_, args, { request }) => {
             const { user } = request;
-            const { product, count, cart } = args; 
+            const { product, count, cart, amount } = args; 
 
             if(cart === undefined) {
                 try {
@@ -27,12 +28,14 @@ export default {
                                 connect: {
                                     id: countId.id
                                 }
-                            }
+                            },
+                            amount
                         });
+                        // console.log(payment)
+                        // console.log(cart);
                         // return payment;
                     })
                     return true;
-                    // return prisma.payment({ id });
                 } catch (error) {
                     console.log(error);
                     return false; 
@@ -66,15 +69,16 @@ export default {
                             }
                         });
                         // return payment;
-                        return true;
+                        // return true;
                     })
-                    return prisma.payment({ id });
+                    
+                    return true;
                 } catch (error) {
                     console.log(error);
                     return false; 
                 }
             }
-            // return prisma.payment({ id });
+            // return payment;
         }
         
     }
