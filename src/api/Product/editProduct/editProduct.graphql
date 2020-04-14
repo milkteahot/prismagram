@@ -6,6 +6,8 @@ type Mutation {
         mainCategory: String 
         subCategory: String 
         thumbnail: String
+        title: String
+        text: String
     ): Product!
 }
 

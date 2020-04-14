@@ -5,7 +5,8 @@ export default {
   Mutation: {
     editProduct: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { id, name, price, mainCategory, subCategory, thumbnail } = args;
+      const { id, name, price, mainCategory, subCategory, thumbnail, title,
+        text } = args;
       const { user } = request;
       const product = await prisma.$exists.product({
         id,
@@ -18,7 +19,9 @@ export default {
             price,
             mainCategory,
             subCategory,
-            thumbnail
+            thumbnail,
+            title,
+            text
           },
           where: {
             id

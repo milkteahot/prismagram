@@ -11,6 +11,8 @@ export default {
         mainCategory,
         subCategory,
         thumbnail,
+        title,
+        text,
         productFiles,
         options,
       } = args;
@@ -21,6 +23,8 @@ export default {
         mainCategory,
         subCategory,
         thumbnail,
+        title,
+        text,
         user: { connect: { id: user.id } }
       });
       const exists = args.productFiles;
