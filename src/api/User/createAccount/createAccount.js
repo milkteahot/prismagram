@@ -6,14 +6,16 @@ const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
 
 export default {
   Mutation: {
-    createAccount: async (_, args) => {
+    createAccount: async(_, args) => {
       const { userName, nickName, email, password } = args;
       const exists = await prisma.$exists.user({ email });
       const existsUserName = await prisma.$exists.user({ userName });
       if(existsUserName) {
+        // res.status(400).send("this username is already taken")
         throw Error("This userName is already taken");
       }
       if (exists) {
+        // res.status(400).send("this email is already taken")
         throw Error("This email is already taken");
       }else {
         // 비밀번호 정규식 확인 

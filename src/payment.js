@@ -6,9 +6,9 @@ export const paymentController =  async(req, res, err) => {
     try {
         const { imp_uid, merchant_uid } = req.body;
 
-        // console.log(imp_uid, merchant_uid);
+        console.log(imp_uid, merchant_uid);
         // res.status(200).send("success");
-
+/*
         // access token 발급받기 - 테스트완료
         const getToken = await axios({
             url: "https://api.iamport.kr/users/getToken",
@@ -38,21 +38,25 @@ export const paymentController =  async(req, res, err) => {
             headers: { "Authorization": access_token }
         });
 
-        
-
         const paymentData = getPaymentData.data.response;
-        console.log(paymentData);
-        res.status(200).send("succeess");
-/*
+        // console.log(paymentData);
+        // res.status(200).send("succeess");
+*/
         //DB에서 결제되어야 하는 금액 조회
-        const order = await prisma.buyLists({
+        const order = await prisma.payments({
             where: {
                 user: {
                     id: user.id
                 }
             },
-            paymentdata: paymentData.merchant_uid //모델 수정하기
+            data: {
+                amount: 1000
+            }
+            ,
+            // paymentdata: paymentData.merchant_uid //모델 수정하기
         });
+        console.log(order);
+        /*
         const amountToBePaid = order.amount;
 
         //결제 검증
@@ -78,6 +82,7 @@ export const paymentController =  async(req, res, err) => {
             throw { stats: "forgery", message: "위조된 결제시도" };
         } */
     }catch(e) {
+        console.log(e);
         res.status(400).send(e);
     }
 };
