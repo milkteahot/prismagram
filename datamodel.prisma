@@ -36,6 +36,9 @@ type User {
   likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)
   rooms: [Room!]! 
+  blocks: [Block!] @relation(name:"Creator")
+  collection: [Block!] @relation(name:"Collectors")
+  seats: [Seat!]! @relation(name:"SeatOfUser")
   loginSecret: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -294,3 +297,21 @@ type Message {
   updatedAt: DateTime! @updatedAt
 }
 
+type Block {
+  id: ID! @id
+  creator: User! @relation(name:"Creator")
+  funding: Funding! 
+  collectors: [User!]! @relation(name:"Collectors")
+  seats: [Seat!]!
+  seatNum: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Seat {
+  id: ID! @id
+  collector: User! @relation(name:"SeatOfUser")
+  block: Block!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

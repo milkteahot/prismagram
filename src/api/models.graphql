@@ -38,6 +38,7 @@ type User {
   likes: [Like!]!
   comments: [Comment!]!
   rooms: [Room!]!
+  blocks: [Block!]
   loginSecret: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -302,6 +303,25 @@ type Message {
   from: User!
   to: User!
   room: Room!
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
+}
+
+type Block {
+  id: ID!
+  creator: User!
+  funding: Funding!
+  participants: [User!]!
+  seats: [Seat!]!
+  seatNum: Int!
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
+}
+
+type Seat {
+  id: ID!
+  collector: User!
+  block: Block!
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }

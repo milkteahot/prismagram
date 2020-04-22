@@ -1,0 +1,7 @@
+type Mutation {
+    newBlock(
+        fundingId: String!
+        seatNum: Int!
+    
+    ): Block!
+}
