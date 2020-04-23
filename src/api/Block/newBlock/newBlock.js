@@ -31,23 +31,17 @@ export default {
                         id: fundingId
                     }
                 },
-                seats: {
-                    create: {
-                        collector: user.id
-                    }
-                },
                 seatNum: seatNum
             });
             seats.forEach(
                 async seat => 
                 await prisma.createSeat({
-                    number: seat,
+                    number: 1,
                     block: {
                         connect: {
                             id: block.id
                         }
-                    },
-                    collector: user.id
+                    }
 
                 })
             )

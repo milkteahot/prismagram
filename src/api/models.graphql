@@ -322,7 +322,7 @@ type Block {
 type Seat {
   id: ID!
   number: Int
-  collector: User!
+  collector: User
   block: Block!
   createdAt: DateTime! 
   updatedAt: DateTime! 

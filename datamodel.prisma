@@ -312,7 +312,7 @@ type Block {
 type Seat {
   id: ID! @id
   number: Int
-  collector: User! @relation(name:"SeatOfUser")
+  collector: User @relation(name:"SeatOfUser")
   block: Block!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
