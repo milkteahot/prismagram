@@ -1,0 +1,5 @@
+type Query {
+    seeBlock(
+        id: String!
+    ): Block!
+}
