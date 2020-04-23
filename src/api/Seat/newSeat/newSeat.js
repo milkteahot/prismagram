@@ -5,7 +5,7 @@ export default {
         newSeat: {
             subscribe: (_, args) => {
                 const { blockId } = args;
-                return prisma.$subscribe.message({ 
+                return prisma.$subscribe.seat({ 
                     AND: [
                         {mutation_in: "CREATED"},
                         { 

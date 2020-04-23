@@ -302,7 +302,8 @@ type Block {
   creator: User! @relation(name:"Creator")
   funding: Funding! 
   collectors: [User!]! @relation(name:"Collectors")
-  seats: [Seat!]!
+  seats: [Seat] @scalarList(strategy: RELATION)
+  seatValue: [Int] @scalarList(strategy: RELATION)
   seatNum: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -310,6 +311,7 @@ type Block {
 
 type Seat {
   id: ID! @id
+  number: Int
   collector: User! @relation(name:"SeatOfUser")
   block: Block!
   createdAt: DateTime! @createdAt

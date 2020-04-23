@@ -1,3 +1,7 @@
 type Mutation {
-    addMember(memberName:String! files: [String!]! mtag1:String mtag2:String mtag3:String) : Member!
+    addMember(
+        memberName:String! 
+        files: [String!]! 
+        mtag1:String mtag2:String mtag3:String
+    ) : Member!
 }

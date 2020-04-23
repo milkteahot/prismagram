@@ -312,7 +312,8 @@ type Block {
   creator: User!
   funding: Funding!
   participants: [User!]!
-  seats: [Seat!]!
+  seats: [Seat]
+  seatValue: [Int] 
   seatNum: Int!
   createdAt: DateTime! 
   updatedAt: DateTime! 
@@ -320,6 +321,7 @@ type Block {
 
 type Seat {
   id: ID!
+  number: Int
   collector: User!
   block: Block!
   createdAt: DateTime! 
