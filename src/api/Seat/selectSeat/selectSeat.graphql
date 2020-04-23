@@ -1,5 +1,7 @@
 type Mutation {
     selectSeat(
         blockId: String!
+        seatId: String
+        number: Int
     ): Boolean
 }

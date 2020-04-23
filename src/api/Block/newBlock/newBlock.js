@@ -33,8 +33,11 @@ export default {
                 },
                 seatNum: seatNum
             });
-            seats.forEach(
-                async seat => 
+            // seats.forEach(
+            //     async seat =>
+            for(var i=0;i<seatRow;i++){
+                seats.forEach(
+                async seat =>
                 await prisma.createSeat({
                     number: 1,
                     block: {
@@ -44,7 +47,8 @@ export default {
                     }
 
                 })
-            )
+              )
+            }
             
             return block;
         }

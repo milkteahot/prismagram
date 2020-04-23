@@ -8,7 +8,7 @@ export default {
         selectSeat: async(_, args, {request}) => {
             isAuthenticated(request);
             const {user} = request;
-            const { blockId } = args;
+            const { blockId, seatId, number } = args;
             // let block = await prisma.block({ id: blockId});
             
             // if(!block){
@@ -18,7 +18,11 @@ export default {
                 AND: [
                     {block: {
                         id: blockId
-                    }}
+                    }},
+                    {seat: {
+                        id: seatId
+                    }},
+                    {number: 2}
                 ]
                 
             };
@@ -28,16 +32,19 @@ export default {
                     throw Error("Already taken")
                 }else{
                     await prisma.updateSeat({
-                        collector: {
-                            connect: {
-                                id: user.id
-                            }
+                        where: {
+                            id: seatId
                         },
-                        block: {
-                            connect: {
-                                id: blockId
-                            }
+                        data: {
+                            collector: {
+                                connect: {
+                                    id: user.id
+                                }
+                            },
+                            number: number,
+    
                         }
+                        
                     })
                 }
                 return true;
