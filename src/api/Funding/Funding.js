@@ -6,6 +6,7 @@ export default {
     likes: ({ id }) => prisma.funding({ id }).likes(),
     fundingFiles: ({ id }) => prisma.funding({ id }).fundingFiles(),
     options: ({ id }) => prisma.funding({ id }).options(),
+    block: ({ id }) => prisma.funding({ id }).block(),
     isLiked: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;

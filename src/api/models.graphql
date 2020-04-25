@@ -87,6 +87,7 @@ type Funding {
   subCategory: String!
   thumbnail: String
   fundingFiles: [FundingFile!] 
+  block: [Block]
   options: [Option!] 
   tags: [Tag!]! 
   likes: [Like!]! 

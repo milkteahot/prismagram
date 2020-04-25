@@ -87,6 +87,7 @@ type Funding {
   subCategory: String!
   thumbnail: String
   fundingFiles: [FundingFile!] @relation(name: "FundingFileOfFunding", onDelete: CASCADE)
+  block: [Block] @relation(name:"BlockOfFunding", onDelete: CASCADE)
   options: [Option!] @relation(name: "FundingOfOption", onDelete: CASCADE)
   tags: [Tag!]! @relation(name: "TagOfFunding", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfFunding", onDelete: CASCADE)
@@ -300,7 +301,7 @@ type Message {
 type Block {
   id: ID! @id
   creator: User! @relation(name:"Creator")
-  funding: Funding! 
+  funding: Funding! @relation(name:"BlockOfFunding", onDelete:CASCADE)
   collectors: [User!]! @relation(name:"Collectors")
   seats: [Seat] @scalarList(strategy: RELATION)
   seatValue: [Int] @scalarList(strategy: RELATION)
