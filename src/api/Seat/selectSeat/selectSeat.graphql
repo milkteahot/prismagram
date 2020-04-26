@@ -1,5 +1,5 @@
 type Mutation {
     selectSeat(
-        id: String
+        seatId: [String]
     ): Boolean
 }

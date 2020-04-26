@@ -8,7 +8,7 @@ export default {
         selectSeat: async(_, args, {request}) => {
             isAuthenticated(request);
             const {user} = request;
-            const { id } = args;
+            const { seatId } = args;
             // let block = await prisma.block({ id: blockId});
             
             // if(!block){
@@ -20,7 +20,7 @@ export default {
                     //     id: blockId
                     // }},
                     {seat: {
-                        id: id
+                        id: seatId
                     }},
                     {number: 2}
                 ]
@@ -31,21 +31,29 @@ export default {
                 if(selectedSeat){
                     throw Error("Already taken")
                 }else{
-                    await prisma.updateSeat({
-                        where: {
-                            id: id
-                        },
-                        data: {
-                            collector: {
-                                connect: {
-                                    id: user.id
-                                }
-                            },
-                            number: 2,
-    
+                    try{
+                        seatId.map(async (item, index) => {
+                            await prisma.updateManySeats({
+                                where: {
+                                    id: item
+                                },
+                                data: {
+                                    // collector: {
+                                    //     connect: [{
+                                    //         id: user.id
+                                    //     }]
+                                    // },
+                                    number: 2,
+            
+                                } 
+                                
+                            })
                         }
-                        
-                    })
+                            )
+
+                    }catch{
+                        return false;
+                    }
                 }
                 return true;
             } catch(e) {
