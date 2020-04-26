@@ -7,5 +7,12 @@ export default {
             const {user} = request;
             return await prisma.user({ id: user.id });
         }
-    }  
+    },
+    Mutation: {
+        me: async(_, __, {request, isAuthenticated}) => {
+            isAuthenticated(request);
+            const {user} = request;
+            return await prisma.user({ id: user.id });
+        }
+    }    
 };
