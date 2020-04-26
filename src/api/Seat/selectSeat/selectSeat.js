@@ -8,7 +8,7 @@ export default {
         selectSeat: async(_, args, {request}) => {
             isAuthenticated(request);
             const {user} = request;
-            const { blockId, seatId, number } = args;
+            const { id } = args;
             // let block = await prisma.block({ id: blockId});
             
             // if(!block){
@@ -16,11 +16,11 @@ export default {
             // }
             const filterOptions = { 
                 AND: [
-                    {block: {
-                        id: blockId
-                    }},
+                    // {block: {
+                    //     id: blockId
+                    // }},
                     {seat: {
-                        id: seatId
+                        id: id
                     }},
                     {number: 2}
                 ]
@@ -33,7 +33,7 @@ export default {
                 }else{
                     await prisma.updateSeat({
                         where: {
-                            id: seatId
+                            id: id
                         },
                         data: {
                             collector: {
@@ -41,7 +41,7 @@ export default {
                                     id: user.id
                                 }
                             },
-                            number: number,
+                            number: 2,
     
                         }
                         
