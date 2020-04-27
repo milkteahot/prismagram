@@ -5,7 +5,7 @@ export default {
         addCart: async (_, args, {request, isAuthenticated }) => {
             isAuthenticated(request);
             const { user } = request;
-            const { product, optionId, count } = args;
+            const { funding, count } = args;
             try {
                 await count.map(async(item, index) => {
                     const countId = await prisma.createCount ({
@@ -17,16 +17,21 @@ export default {
                                 id: user.id
                             }
                         },
-                        product: {
+                        funding: {
                             connect: {
-                                id: product[index]
+                                id: funding[index]
                             }
                         },
-                        options: {
-                            connect: {
-                                id: optionId[index]
-                            }
-                        },
+                        // product: {
+                        //     connect: {
+                        //         id: product[index]
+                        //     }
+                        // },
+                        // options: {
+                        //     connect: {
+                        //         id: optionId[index]
+                        //     }
+                        // },
                         count: {
                             connect: {
                                 id: countId.id

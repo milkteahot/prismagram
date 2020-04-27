@@ -24,7 +24,6 @@ export default {
                     }},
                     {number: 2}
                 ]
-                
             };
             try {
                 const selectedSeat = await prisma.$exists.seat(filterOptions)

@@ -39,6 +39,7 @@ type User {
   comments: [Comment!]!
   rooms: [Room!]!
   blocks: [Block!]
+  contracts: [Contract]
   loginSecret: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -133,7 +134,8 @@ type Count {
 type Cart {
   id: ID! 
   user: User! 
-  product: [Product!]!
+  funding: [Funding]
+  product: [Product]
   options: [Option!]!
   count: [Count!]!
   pcount: Int!
@@ -311,6 +313,7 @@ type Message {
 type Block {
   id: ID!
   creator: User!
+  collectors: [User]
   funding: Funding!
   participants: [User!]!
   seats: [Seat]
@@ -327,4 +330,12 @@ type Seat {
   block: Block!
   createdAt: DateTime! 
   updatedAt: DateTime! 
+}
+
+type Contract {
+  id: ID!
+  title: String!
+  text: String!
+  creator: User!
+  collector: [User]
 }

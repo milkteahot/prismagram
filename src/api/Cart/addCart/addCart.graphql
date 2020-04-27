@@ -1,8 +1,6 @@
 type Mutation {
     addCart(
-        product: [String!] 
-        optionId: [String!] 
-        count:[Int!]
+        funding: [String]
+        count:[Int!]!
         ):Boolean!
-
 } 

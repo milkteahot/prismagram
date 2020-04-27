@@ -3,3 +3,11 @@ type Query {
         id: String!
     ): Block!
 }
+
+type Query {
+    seeMyBlock:[Block]
+}
+
+type Query {
+    seeMySeat: [Block]
+}

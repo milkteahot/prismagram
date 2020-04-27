@@ -37,6 +37,7 @@ type User {
   comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)
   rooms: [Room!]! 
   blocks: [Block!] @relation(name:"Creator")
+  contracts: [Contract] @relation(name:"ContractOfUser")
   collection: [Block!] @relation(name:"Collectors")
   seats: [Seat!]! @relation(name:"SeatOfUser")
   loginSecret: String
@@ -130,7 +131,8 @@ type Count {
 type Cart {
   id: ID! @id
   user: User! @relation(name: "UserOfCart")
-  product: [Product!]! @relation(name: "ProductOfCart")
+  funding: [Funding] @relation(name:"FundingOfCart")
+  product: [Product] @relation(name: "ProductOfCart")
   options: [Option!]! @relation(name: "CartOfOption")
   count: [Count!]! @relation(name: "CartOfCount", onDelete: CASCADE)
   pcount: Int! @default(value:0)
@@ -317,4 +319,12 @@ type Seat {
   block: Block!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+}
+
+type Contract {
+  id: ID! @id
+  title: String!
+  text: String!
+  creator: User! @relation(name:"ContractOfUser")
+  collector: [User] @relation(name:"ContractOfCollector")
 }
