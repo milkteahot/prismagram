@@ -23,7 +23,7 @@ export default {
                 // 전체에서 베스트 아이템 8개 
                 else if (sort === "best") {
                     return prisma.fundings({
-                        orderBy: "numberOfSales_DESC",
+                        orderBy: "numberOfParticipants_DESC",
                         first: 8 // 첫번째로부터 8개까지만 출력 
                     })
                 }
@@ -52,7 +52,7 @@ export default {
                         where: {
                             mainCategory
                         }, 
-                        orderBy: "numberOfSales_DESC"
+                        orderBy: "numberOfParticipants_DESC"
                     })
                 }
             }
@@ -73,7 +73,7 @@ export default {
                         where: {
                             subCategory
                         }, 
-                        orderBy: "numberOfSales_DESC"
+                        orderBy: "numberOfParticipants_DESC"
                     })
                 }
             } 
@@ -84,7 +84,7 @@ export default {
             const { sort, mainCategory, subCategory } = args; 
             if(sort === "all" && mainCategory === "" && subCategory === "") {
                 return prisma.fundings({
-                    orderBy: "numberOfSales_DESC", 
+                    orderBy: "numberOfParticipants_DESC", 
                     first: 4
                 })
             }
@@ -94,7 +94,7 @@ export default {
                     where: {
                         mainCategory
                     },
-                    orderBy: "numberOfSales_DESC"
+                    orderBy: "numberOfParticipants_DESC"
                 })
             }
 
@@ -103,7 +103,7 @@ export default {
                     where: {
                         subCategory
                     }, 
-                    orderBy: "numberOfSales_DESC"
+                    orderBy: "numberOfParticipants_DESC"
                 })
             }
         },
