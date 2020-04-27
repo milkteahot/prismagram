@@ -1,6 +1,6 @@
 type Mutation {
     addPayment(
-         product: [String!]
+        funding: [String]
         count: [Int!]
         cart: [String]
         amount: Int!

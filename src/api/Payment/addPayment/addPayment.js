@@ -5,7 +5,7 @@ export default {
     Mutation: {
         addPayment : async (_, args, { request }) => {
             const { user } = request;
-            const { product, count, cart, amount } = args; 
+            const { funding, count, cart, amount } = args; 
 
             if(cart === undefined) {
                 try {
@@ -19,9 +19,10 @@ export default {
                                     id: user.id 
                                 }
                             }, 
-                            product: {
+                            
+                            funding: {
                                 connect: {
-                                    id: product[index]
+                                    id: funding[index]
                                 }
                             }, 
                             count: {

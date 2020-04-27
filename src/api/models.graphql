@@ -160,7 +160,8 @@ type BuyList {
 type Payment {
   id: ID!
   user: User! 
-  product: [Product!]! 
+  funding: [Funding]
+  product: [Product]
   options: [Option!]
   count: [Count!]!
   cart: [Cart!]

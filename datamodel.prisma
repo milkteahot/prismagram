@@ -156,7 +156,8 @@ type BuyList {
 type Payment {
   id: ID! @id
   user: User! @relation(name: "UserOfPayment")
-  product: [Product!]! @relation(name: "ProductOfPayment")
+  funding: [Funding] @relation(name: "FundingOfPayment") 
+  product: [Product] @relation(name: "ProductOfPayment")
   options: [Option!] @relation(name: "PaymentOfOption")
   count: [Count!]! @relation(name: "PaymentOfCount")
   amount: Int!
