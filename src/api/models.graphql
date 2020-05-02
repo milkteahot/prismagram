@@ -10,6 +10,7 @@ type User {
   email: String!
   nickName: String!
   password: String!
+  account: [Account]
   zipCode: String! 
   address: String! 
   addressDetail: String!
@@ -339,4 +340,11 @@ type Contract {
   text: String!
   creator: User!
   collector: [User]
+}
+
+type Account {
+  id: ID!
+  user: User!
+  bank: String!
+  account: Float!
 }

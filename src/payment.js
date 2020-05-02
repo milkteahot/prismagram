@@ -2,8 +2,9 @@ import { prisma } from "../generated/prisma-client";
 
 // app.use(bodyParser.json());
 
-export const paymentController =  async(req, res, err) => {
+export const paymentController =  async(req, res, {request}) => {
     try {
+        const {user} = request;
         const { imp_uid, merchant_uid } = req.body;
 
         console.log(imp_uid, merchant_uid);

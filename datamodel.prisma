@@ -10,6 +10,7 @@ type User {
   email: String! @unique
   nickName: String!
   password: String
+  account: [Account] @relation(name: "AccountOfUser")
   zipCode: String
   address: String
   addressDetail: String
@@ -328,4 +329,11 @@ type Contract {
   text: String!
   creator: User! @relation(name:"ContractOfUser")
   collector: [User] @relation(name:"ContractOfCollector")
+}
+
+type Account {
+  id: ID! @id
+  user: User! @relation(name: "AccountOfUser")
+  bank: String!
+  account: Float!
 }
