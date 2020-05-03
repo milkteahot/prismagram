@@ -31,7 +31,8 @@ type Mutation {
 type Mutation {
     editOption (
         FundingId: String
-        optionName: [String!] 
+        optionId: [String]
+        optionName: [String] 
         optionprice: [Int]
     ): Boolean! 
 }

@@ -1,0 +1,7 @@
+type Mutation {
+    getSeatValue(
+        seatValue: [Int]
+        seatNum: Int
+        blockId: String
+    ): Boolean!
+}

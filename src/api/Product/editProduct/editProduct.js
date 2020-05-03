@@ -67,6 +67,7 @@ export default {
       return true;
     },
     // 옵션 수정
+    /*
     editOption: (_, args) => {
       const { productId, optionId, optionName, optionPrice } = args;
       try {
@@ -98,6 +99,7 @@ export default {
         return false;
       }
     }
+    */
     
   }
 };

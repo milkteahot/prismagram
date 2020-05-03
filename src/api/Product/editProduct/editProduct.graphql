@@ -26,11 +26,4 @@ type Mutation {
 }
 
 
-type Mutation {
-    editOption (
-        productId: String!
-        optionId: [String]! 
-        optionName: [String]
-        optionPrice: [Int]
-    ): Boolean! 
-}
+

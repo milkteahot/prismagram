@@ -13,11 +13,11 @@ export default {
             for(var i=0;i<row.length;i++){
                 row[i] = new Array(seatRow);
             }
-            for(var i=0;i<row.length;i++){
-                for(var j=0;j<seatRow;j++){
-                    row[j][i] = 1;
-                }
-            }
+            // for(var i=0;i<row.length;i++){
+            //     for(var j=0;j<seatRow;j++){
+            //         row[j][i] = 1;
+            //     }
+            // }
             var seats = row;
 
             const block = await prisma.createBlock({
