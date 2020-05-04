@@ -344,7 +344,7 @@ type Contract {
   title: String!
   text: String!
   creator: User!
-  collector: [User]
+  collector: User
   condition: [Condition] 
   createdAt: DateTime! 
 }

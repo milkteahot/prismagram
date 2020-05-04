@@ -332,7 +332,7 @@ type Contract {
   title: String!
   text: String!
   creator: User! @relation(name:"ContractOfUser")
-  collector: [User] @relation(name:"ContractOfCollector")
+  collector: User @relation(name:"ContractOfCollector")
   condition: [Condition] @relation(name:"ConditionOfContract")
   createdAt: DateTime! @createdAt
 }
