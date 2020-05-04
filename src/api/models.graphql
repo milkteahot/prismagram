@@ -41,6 +41,7 @@ type User {
   rooms: [Room!]!
   blocks: [Block!]
   contracts: [Contract]
+  seats: [Seat]
   loginSecret: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -99,6 +100,7 @@ type Funding {
   cart: [Cart!]! 
   buyList: [BuyList!]! 
   payment: [Payment!]! 
+  contract: [Contract]
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
@@ -118,6 +120,7 @@ type Option {
   id: ID! 
   optionName: String! 
   optionprice: Int
+  optiontext: String
   product: Product
   funding: Funding
   cart: Cart
@@ -328,7 +331,7 @@ type Block {
 type Seat {
   id: ID!
   number: Int
-  collector: User
+  user: User
   block: Block!
   createdAt: DateTime! 
   updatedAt: DateTime! 
@@ -336,10 +339,23 @@ type Seat {
 
 type Contract {
   id: ID!
+  contentName: String
+  funding: Funding
   title: String!
   text: String!
   creator: User!
   collector: [User]
+  condition: [Condition] 
+  createdAt: DateTime! 
+}
+
+type Condition {
+  id: ID! 
+  title: String!
+  text: String!
+  contract: Contract!
+  createdAt: DateTime! 
+  updatedAt: DateTime! 
 }
 
 type Account {

@@ -40,7 +40,7 @@ type User {
   blocks: [Block!] @relation(name:"Creator")
   contracts: [Contract] @relation(name:"ContractOfUser")
   collection: [Block!] @relation(name:"Collectors")
-  seats: [Seat!]! @relation(name:"SeatOfUser")
+  seats: [Seat] @relation(name:"SeatOfUser")
   loginSecret: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -96,6 +96,7 @@ type Funding {
   cart: [Cart!]! @relation(name: "FundingOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "FundingOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "FundingOfPayment", onDelete: CASCADE)
+  contract: [Contract] @relation(name:"ContractOfFunding")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -115,6 +116,7 @@ type Option {
   id: ID! @id
   optionName: String! @default(value:"")
   optionprice: Int @default(value:0)
+  optiontext: String @default(value:"")
   product: Product @relation(name:"ProductOfOption")
   funding: Funding @relation(name:"FundingOfOption")
   cart: [Cart!] @relation(name: "CartOfOption")
@@ -317,7 +319,7 @@ type Block {
 type Seat {
   id: ID! @id
   number: Int
-  collector: User @relation(name:"SeatOfUser")
+  user: User @relation(name:"SeatOfUser")
   block: Block!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -325,10 +327,23 @@ type Seat {
 
 type Contract {
   id: ID! @id
+  contentName: String
+  funding: Funding @relation(name:"ContractOfFunding")
   title: String!
   text: String!
   creator: User! @relation(name:"ContractOfUser")
   collector: [User] @relation(name:"ContractOfCollector")
+  condition: [Condition] @relation(name:"ConditionOfContract")
+  createdAt: DateTime! @createdAt
+}
+
+type Condition {
+  id: ID! @id
+  title: String!
+  text: String!
+  contract: Contract! @relation(name:"ConditionOfContract")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Account {

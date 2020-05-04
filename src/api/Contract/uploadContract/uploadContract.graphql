@@ -1,0 +1,8 @@
+type Mutation {
+    uploadContract(
+        contentName: String
+        title: String! 
+        text:String! 
+        condition: [String]
+    ) : Contract!
+}

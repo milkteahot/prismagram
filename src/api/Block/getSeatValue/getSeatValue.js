@@ -24,10 +24,44 @@ export default {
                             id:blockSeatId[item]
                         },
                         data: {
-                            number: 2
+                            number: 2,
                         }
                     })
+                    
             })
+            // const blockSeatSelected = await prisma.seats({
+            //     where: {
+            //         AND: [
+            //             {block: {id:blockId}},
+            //             {number:2}
+            //         ]
+            //     }
+            // })
+            // const blockSeatSelectedId = blockSeatSelected.map(item=>item.id)
+            // console.log(blockSeatSelected)
+            // console.log(blockSeatSelectedId)
+            // blockSeatSelectedId.map(async(item, index) => {
+            //     await prisma.updateSeat({
+            //         where: {
+            //             id:item
+            //         },
+            //         data: {
+            //             user: user.id,
+            //         }
+            //     })
+
+            // })
+            
+            // prisma.updateSeat({
+            //     where: {
+            //         id: blockSeatId
+            //     },
+            //     data: {
+            //         user: {
+            //             id: user.id
+            //         }
+            //     }
+            // })
             const block = await prisma.block({id:blockId})
             return block;
         }
