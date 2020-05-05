@@ -1,0 +1,3 @@
+type Mutation {
+    deleteSeat(blockId: String!): Boolean!
+}

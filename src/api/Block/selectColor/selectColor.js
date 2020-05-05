@@ -3,9 +3,9 @@ import { prisma } from "../../../../generated/prisma-client";
 
 export default {
     Mutation: {
-        getSeatValue: async(_, args, {request }) => {
+        selectColor: async(_, args, {request }) => {
             isAuthenticated(request);
-            const { seatValue, blockId } = args;
+            const { seatValue, blockId, color } = args;
             const {user} = request;
 
             const blockSeat = await prisma.seats({
@@ -24,7 +24,7 @@ export default {
                             id:blockSeatId[item]
                         },
                         data: {
-                            number: 2
+                            color: color
                         }
                     })
                     

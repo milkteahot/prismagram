@@ -317,8 +317,8 @@ type Block {
   creator: User! @relation(name:"Creator")
   funding: Funding! @relation(name:"BlockOfFunding", onDelete:CASCADE)
   collectors: [User!]! @relation(name:"Collectors")
-  seats: [Seat] @scalarList(strategy: RELATION)
-  seatValue: [Int] @scalarList(strategy: RELATION)
+  seats: [Seat] @relation(name: "SeatOfBlock", onDelete: CASCADE)
+  seatValue: [Int] 
   seatNum: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -327,10 +327,11 @@ type Block {
 type Seat {
   id: ID! @id
   number: Int
+  color: String @default(value:"FF7065")
   user: User @relation(name:"SeatOfUser")
-  block: Block!
+  block: Block! @relation(name:"SeatOfBlock", onDelete:CASCADE)
   createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
+  updatedAt: DateTime! @updatedAt 
 }
 
 type Contract {

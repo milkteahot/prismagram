@@ -1,0 +1,7 @@
+type Mutation {
+    selectColor(
+        seatValue: [Int!]!
+        blockId: String!
+        color: String!
+    ): Block!
+}

@@ -1,0 +1,3 @@
+type Mutation {
+    deleteBlock(blockId: String!): Boolean!
+}
