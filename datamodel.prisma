@@ -78,6 +78,7 @@ type ProductFile {
 type Funding {
   id: ID! @id
   name: String! 
+  subtitle: String
   user: User! @relation(name: "FundingOfUser")
   price: Int! 
   text: String
@@ -91,6 +92,7 @@ type Funding {
   fundingFiles: [FundingFile!] @relation(name: "FundingFileOfFunding", onDelete: CASCADE)
   block: [Block] @relation(name:"BlockOfFunding", onDelete: CASCADE)
   options: [Option!] @relation(name: "FundingOfOption", onDelete: CASCADE)
+  link: [Link] @relation(name:"LinkOfFunding")
   tags: [Tag!]! @relation(name: "TagOfFunding", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfFunding", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "FundingOfCart", onDelete: CASCADE)
@@ -122,6 +124,12 @@ type Option {
   cart: [Cart!] @relation(name: "CartOfOption")
   payment: [Payment!] @relation(name: "PaymentOfOption")
   buyList: [BuyList!] @relation(name:"BuyListOfOption")
+}
+
+type Link {
+  id: ID! @id
+  url: String!
+  funding: [Funding] @relation(name:"LinkOfFunding")
 }
 
 type Count {

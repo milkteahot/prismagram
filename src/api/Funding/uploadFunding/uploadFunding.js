@@ -7,6 +7,7 @@ export default {
       const { user } = request;
       const {
         name,
+        subtitle,
         price,
         targetAmount,
         dueDate,
@@ -21,6 +22,7 @@ export default {
       // file과 option 없이 funding 생성
       const funding = await prisma.createFunding({
         name, 
+        subtitle,
         price,
         targetAmount,
         dueDate,
@@ -46,19 +48,18 @@ export default {
         });
       });
     }
-    //   options.forEach(async option => {
-    //     await prisma.createOption({
-    //       data: {
-    //         optionName: option,
-    //         optionprice,
-    //         funding: {
-    //           connect: {
-    //             id: funding.id
-    //           }
-    //         }
-    //       }
-    //     })
-    // });
+      links.forEach(async link => {
+        await prisma.createLink({
+          data: {
+            url: link,
+            funding: {
+              connect: {
+                id: funding.id
+              }
+            }
+          }
+        })
+    });
 
     //   fundingDetailFile.forEach(async fundingDetailFile => {
     //     await prisma.createfundingDetailFile({

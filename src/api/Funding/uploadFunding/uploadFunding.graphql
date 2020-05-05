@@ -1,6 +1,7 @@
 type Mutation {
     uploadFunding(
         name: String!
+        subtitle: String!
         price: Int! 
         targetAmount: Int!
         dueDate: DateTime
@@ -13,6 +14,7 @@ type Mutation {
         options: [String!]
         tags: [String!] 
         text: String
+        links: [String]
     ): Funding! 
 }
 

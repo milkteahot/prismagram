@@ -79,6 +79,7 @@ type ProductFile {
 type Funding {
   id: ID! 
   name: String! 
+  subtitle: String
   user: User! 
   price: Int! 
   text: String
