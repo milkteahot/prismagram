@@ -24,8 +24,8 @@ export default {
                     }
                 })
             })
-            await prisma.deleteBlock({ id: blockId })
-            
+            // await prisma.deleteBlock({ id: blockId })
+
             return true;
             
         }
