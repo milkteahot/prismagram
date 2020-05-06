@@ -95,6 +95,37 @@ export default {
         return false;
       }
     },
+
+    editFundingTag: (_, args) => {
+      const { fundingId, tagId, text } = args;
+      try {
+        tagId.map(async (item, index) => {
+          if (tagId.length > index) {
+            await prisma.updateTag({
+              where: {
+                id: tagId[index]
+              },
+              data: {
+                text: text
+              }
+            });
+          } else {
+            await prisma.createTag({
+              text: text,
+              funding: {
+                connect: {
+                  id: fundingId
+                }
+              }
+            });
+          }
+        });
+        return true;
+      } catch (error){
+        console.log(error);
+        return false;
+      }
+    },
     
     
     
