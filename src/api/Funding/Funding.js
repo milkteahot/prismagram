@@ -4,6 +4,7 @@ export default {
   Funding: {
     user: ({ id }) => prisma.funding({ id }).user(),
     likes: ({ id }) => prisma.funding({ id }).likes(),
+    tags: ({ id }) => prisma.funding({ id }).tags(),
     fundingFiles: ({ id }) => prisma.funding({ id }).fundingFiles(),
     options: ({ id }) => prisma.funding({ id }).options(),
     cart: ({ id }) => prisma.funding({ id }).cart(),
