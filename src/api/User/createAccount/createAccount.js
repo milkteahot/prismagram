@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 // 비밀번호 정규식 설정 (영문, 숫자, 특수문자 조합, 8~16자리)
 const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
+//const userNameCheck = /^[a-zA-Z0-9._]{1,30}$/;
 
 export default {
   Mutation: {
@@ -22,6 +23,10 @@ export default {
         if (passwordCheck.test(password) === false) {
             throw Error("비밀번호는 영문, 숫자, 특수문자 조합의 8~16자리여야 합니다."); 
         }
+        // 유저네임 정규식 확인
+        // if(userNameCheck.test(userName) === false) {
+        //   throw Error("유저네임은 영문, 숫자, ._ 를 사용한 1~30자여야 합니다.")
+        // }
         // 비밀번호 암호화 진행
         bcrypt.hash(password, 10, async function(err, hash) {
             await prisma.createUser({
