@@ -56,7 +56,7 @@ type Product {
   numberOfSales: Int!
   tags: [Tag!]! 
   likes: [Like!]!
-  commentfuding: [CommentFunding!]!
+  commentfunding: [CommentFunding!]!
   isLiked: Boolean
   likeCount: Int!
   commentCount: Int!
@@ -88,6 +88,7 @@ type Funding {
   fundingFiles: [FundingFile!] 
   block: [Block]
   options: [Option!] 
+  link: [Link]
   tags: [Tag!]! 
   likes: [Like!]! 
   isLiked: Boolean
@@ -122,6 +123,12 @@ type Option {
   cart: Cart
   payment: Payment
   buyList: BuyList
+}
+
+type Link {
+  id: ID! 
+  url: String!
+  funding: [Funding] 
 }
 
 type Count {

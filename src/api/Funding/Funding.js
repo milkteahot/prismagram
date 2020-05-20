@@ -7,6 +7,7 @@ export default {
     tags: ({ id }) => prisma.funding({ id }).tags(),
     fundingFiles: ({ id }) => prisma.funding({ id }).fundingFiles(),
     options: ({ id }) => prisma.funding({ id }).options(),
+    link: ({ id }) => prisma.funding({ id }).link(),
     cart: ({ id }) => prisma.funding({ id }).cart(),
     block: ({ id }) => prisma.funding({ id }).block(),
     contract: ({ id }) => prisma.funding({ id }).contract(),

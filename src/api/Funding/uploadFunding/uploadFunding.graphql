@@ -14,7 +14,7 @@ type Mutation {
         options: [String!]
         tags: [String!] 
         text: String
-        links: [String]
+        link: [String]
     ): Funding! 
 }
 

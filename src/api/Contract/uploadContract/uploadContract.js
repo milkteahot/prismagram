@@ -5,12 +5,18 @@ export default {
     uploadContract: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
-      const { contentName, title, text, condition, fundingId } = args;
+      const { contentName, title, text, condition, title2, text2, fundingId } = args;
       const contract = await prisma.createContract({
         contentName,
         title,
         text,
-        creator: { connect: { id: user.id } },
+        title2,
+        text2,
+        creator: {
+          connect: {
+            id: user.id
+          }
+        }
       });
       
       condition.map(
@@ -22,7 +28,7 @@ export default {
               connect: {
                 id: contract.id
               }
-            }
+            },
         })
         );
       

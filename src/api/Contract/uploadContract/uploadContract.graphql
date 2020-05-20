@@ -3,6 +3,8 @@ type Mutation {
         contentName: String
         title: String! 
         text:String! 
+        title2: String
+        text2: String
         condition: [String]
     ) : Contract!
 }
