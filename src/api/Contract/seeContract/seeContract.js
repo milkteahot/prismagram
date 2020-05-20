@@ -6,22 +6,23 @@ export default {
         isAuthenticated(request);
         const { id } = args;
         const { user } = request;
-        
-        const myContract = await prisma.$exists.contract({
-            OR: [
-                {creator: {
-                    id: user.id
-                }},
-                {collector: {
-                    id: user.id
-                }}
-            ]
-        })
-        if(myContract){
-            return prisma.contract({id});
-        }else{
-            return false;
-        }
+        return await prisma.contract({ id });
+        // const myContract = await prisma.$exists.contract({
+        //     OR: [
+        //         {creator: {
+        //             id: user.id
+        //         }},
+        //         {collector: {
+        //             id: user.id
+        //         }}
+        //     ]
+        // })
+        // if(myContract){
+        //     return prisma.contract({id});
+        // }else{
+        //     return false;
+        // }
+
     }
         
     }

@@ -9,6 +9,7 @@ export default {
     options: ({ id }) => prisma.funding({ id }).options(),
     cart: ({ id }) => prisma.funding({ id }).cart(),
     block: ({ id }) => prisma.funding({ id }).block(),
+    contract: ({ id }) => prisma.funding({ id }).contract(),
     isLiked: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
