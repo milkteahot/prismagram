@@ -18,6 +18,7 @@ export default {
         thumbnail,
         fundingFiles,
         text,
+        links,
       } = args;
       // file과 option 없이 funding 생성
       const funding = await prisma.createFunding({
@@ -48,16 +49,15 @@ export default {
         });
       });
     }
-      links.forEach(async link => {
+      links.forEach(
+        async link => {
         await prisma.createLink({
-          data: {
             url: link,
             funding: {
               connect: {
                 id: funding.id
               }
             }
-          }
         })
     });
 
