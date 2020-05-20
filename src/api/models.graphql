@@ -56,7 +56,7 @@ type Product {
   numberOfSales: Int!
   tags: [Tag!]! 
   likes: [Like!]!
-  commentproduct: [CommentProduct!]!
+  commentfuding: [CommentFunding!]!
   isLiked: Boolean
   likeCount: Int!
   commentCount: Int!
@@ -84,7 +84,7 @@ type Funding {
   mainCategory: String! 
   subCategory: String!
   thumbnail: String
-  commentfuding: [CommentFunding] @relation(name: "CommentFundingOfFunding", onDelete: CASCADE)
+  commentfunding: [CommentFunding] 
   fundingFiles: [FundingFile!] 
   block: [Block]
   options: [Option!] 

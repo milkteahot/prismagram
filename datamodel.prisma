@@ -1,7 +1,7 @@
 type User {
   id: ID! @id
   avatar: String  @default(
-      value: "https://scontent-hkg3-1.cdninstagram.com/vp/51ea9f9……74447047_1561961433825017856_n.jpg?_nc_ht=scontent-hkg3-1.cdninstagram.com"
+      value: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     )
   userName: String! @unique
   email: String! @unique
@@ -82,7 +82,7 @@ type Funding {
   mainCategory: String! 
   subCategory: String!
   thumbnail: String
-  commentfuding: [CommentFunding] @relation(name: "CommentFundingOfFunding", onDelete: CASCADE)
+  commentfunding: [CommentFunding] @relation(name: "CommentFundingOfFunding", onDelete: CASCADE)
   fundingFiles: [FundingFile!] @relation(name: "FundingFileOfFunding", onDelete: CASCADE)
   block: [Block] @relation(name:"BlockOfFunding", onDelete: CASCADE)
   options: [Option!] @relation(name: "FundingOfOption", onDelete: CASCADE)
