@@ -271,7 +271,7 @@ type Seat {
   number: Int
   color: String
   user: User
-  block: Block!
+  block: Block
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }

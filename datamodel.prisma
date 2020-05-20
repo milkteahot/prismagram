@@ -3,18 +3,11 @@ type User {
   avatar: String  @default(
       value: "https://scontent-hkg3-1.cdninstagram.com/vp/51ea9f9……74447047_1561961433825017856_n.jpg?_nc_ht=scontent-hkg3-1.cdninstagram.com"
     )
-  storyImg: String
-  charHomeImg: String 
-  storeImg: String
   userName: String! @unique
   email: String! @unique
   nickName: String!
   password: String
   account: [Account] @relation(name: "AccountOfUser", onDelete: CASCADE)
-  zipCode: String
-  address: String
-  addressDetail: String
-  phone: String
   products: [Product!]! @relation(name: "ProductOfUser", onDelete: CASCADE)
   funding: [Funding!]!@relation(name: "FundingOfUser", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "UserOfCart", onDelete: CASCADE)
@@ -35,6 +28,13 @@ type User {
   contracts: [Contract] @relation(name:"ContractOfUser", onDelete: CASCADE)
   collection: [Block!] @relation(name:"Collectors", onDelete: CASCADE)
   seats: [Seat] @relation(name:"SeatOfUser", onDelete: CASCADE)
+  storyImg: String
+  charHomeImg: String 
+  storeImg: String
+  zipCode: String
+  address: String
+  addressDetail: String
+  phone: String
   loginSecret: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -253,8 +253,8 @@ type Block {
   creator: User! @relation(name:"Creator")
   funding: Funding! @relation(name:"BlockOfFunding", onDelete:CASCADE)
   collectors: [User!]! @relation(name:"Collectors")
-  seats: [Seat] @relation(name:"SeatOfBlock", onDelete:CASCADE)
-  seatValue: [Int] 
+  seats: [Seat] @scalarList(strategy: RELATION) @relation(name:"Myblock", onDelete:CASCADE)
+  seatValue: [Int] @scalarList(strategy: RELATION)
   seatNum: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -265,10 +265,16 @@ type Seat {
   number: Int
   color: String @default(value:"FF7065")
   user: User @relation(name:"SeatOfUser")
-  block: Block! @relation(name:"SeatOfBlock", onDelete:CASCADE)
+  block: Block! @relation(name:"Myblock", onDelete:CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt 
 }
+
+type Myblock @relationTable {
+  block: Block!
+  seat: Seat!
+}
+
 
 type Contract {
   id: ID! @id
