@@ -3,7 +3,6 @@ import { prisma } from "../../../generated/prisma-client";
 export default {
   Product: {
     user: ({ id }) => prisma.product({ id }).user(),
-    commentproduct: ({ id }) => prisma.product({ id }).commentproduct(),
     likes: ({ id }) => prisma.product({ id }).likes(),
     productFiles: ({ id }) => prisma.product({ id }).productFiles(),
     options: ({ id }) => prisma.product({ id }).options(),

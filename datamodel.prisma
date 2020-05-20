@@ -10,7 +10,7 @@ type User {
   email: String! @unique
   nickName: String!
   password: String
-  account: [Account] @relation(name: "AccountOfUser")
+  account: [Account] @relation(name: "AccountOfUser", onDelete: CASCADE)
   zipCode: String
   address: String
   addressDetail: String
@@ -23,24 +23,18 @@ type User {
   isFollowing: Boolean
   isSelf: Boolean
   bio: String
-  tag1: String
-  tag2: String
-  tag3: String
   tags: [Tag!]! @relation(name: "TagsOfUser", onDelete: CASCADE)
   following: [User!]! @relation(name: "FollowRelation")
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
   postsCount: Int
-  wikiposts: [WikiPost!]! @relation(name: "WikiPostsOfUser", onDelete: CASCADE)
-  wikipostsCount: Int
-  members: [Member!]! @relation(name: "MembersOfUser", onDelete: CASCADE)
   likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfUser", onDelete: CASCADE)
   rooms: [Room!]! 
-  blocks: [Block!] @relation(name:"Creator")
-  contracts: [Contract] @relation(name:"ContractOfUser")
-  collection: [Block!] @relation(name:"Collectors")
-  seats: [Seat] @relation(name:"SeatOfUser")
+  blocks: [Block!] @relation(name:"Creator", onDelete: CASCADE)
+  contracts: [Contract] @relation(name:"ContractOfUser", onDelete: CASCADE)
+  collection: [Block!] @relation(name:"Collectors", onDelete: CASCADE)
+  seats: [Seat] @relation(name:"SeatOfUser", onDelete: CASCADE)
   loginSecret: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -49,7 +43,7 @@ type User {
 type Product {
   id: ID! @id
   name: String! 
-  user: User! @relation(name: "ProudctOfUser")
+  user: User! @relation(name: "ProudctOfUser", onDelete: CASCADE)
   price: Int! 
   mainCategory: String! 
   subCategory: String!
@@ -61,7 +55,6 @@ type Product {
   numberOfSales: Int! @default(value: 0)
   tags: [Tag!]! @relation(name: "TagOfProduct", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfProduct", onDelete: CASCADE)
-  commentproduct: [CommentProduct!]! @relation(name: "CommentProudctOfProduct", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "ProductOfPayment", onDelete: CASCADE)
@@ -72,14 +65,14 @@ type Product {
 type ProductFile {
   id: ID! @id
   url: String! 
-  product: Product! @relation(name: "ProductFileOfProduct")
+  product: Product! @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
 }
 
 type Funding {
   id: ID! @id
   name: String! 
   subtitle: String
-  user: User! @relation(name: "FundingOfUser")
+  user: User! @relation(name: "FundingOfUser", onDelete: CASCADE)
   price: Int! 
   text: String
   targetAmount: Int!
@@ -89,16 +82,17 @@ type Funding {
   mainCategory: String! 
   subCategory: String!
   thumbnail: String
+  commentfuding: [CommentFunding] @relation(name: "CommentFundingOfFunding", onDelete: CASCADE)
   fundingFiles: [FundingFile!] @relation(name: "FundingFileOfFunding", onDelete: CASCADE)
   block: [Block] @relation(name:"BlockOfFunding", onDelete: CASCADE)
   options: [Option!] @relation(name: "FundingOfOption", onDelete: CASCADE)
-  link: [Link] @relation(name:"LinkOfFunding")
+  link: [Link] @relation(name:"LinkOfFunding", onDelete: CASCADE)
   tags: [Tag!]! @relation(name: "TagOfFunding", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfFunding", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "FundingOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "FundingOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "FundingOfPayment", onDelete: CASCADE)
-  contract: [Contract] @relation(name:"ContractOfFunding")
+  contract: [Contract] @relation(name:"ContractOfFunding", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -106,7 +100,7 @@ type Funding {
 type FundingFile {
   id: ID! @id
   url: String! 
-  funding: Funding! @relation(name: "FundingFileOfFunding")
+  funding: Funding! @relation(name: "FundingFileOfFunding", onDelete: CASCADE)
 }
 
 type AdminFile {
@@ -119,60 +113,60 @@ type Option {
   optionName: String! @default(value:"")
   optionprice: Int @default(value:0)
   optiontext: String @default(value:"")
-  product: Product @relation(name:"ProductOfOption")
-  funding: Funding @relation(name:"FundingOfOption")
-  cart: [Cart!] @relation(name: "CartOfOption")
-  payment: [Payment!] @relation(name: "PaymentOfOption")
-  buyList: [BuyList!] @relation(name:"BuyListOfOption")
+  product: Product @relation(name:"ProductOfOption", onDelete: CASCADE)
+  funding: Funding @relation(name:"FundingOfOption", onDelete: CASCADE)
+  cart: [Cart!] @relation(name: "CartOfOption", onDelete: CASCADE)
+  payment: [Payment!] @relation(name: "PaymentOfOption", onDelete: CASCADE)
+  buyList: [BuyList!] @relation(name:"BuyListOfOption", onDelete: CASCADE)
 }
 
 type Link {
   id: ID! @id
   url: String!
-  funding: [Funding] @relation(name:"LinkOfFunding")
+  funding: [Funding] @relation(name:"LinkOfFunding", onDelete: CASCADE)
 }
 
 type Count {
   id: ID! @id
   count: Int! 
-  cart: [Cart!] @relation(name: "CartOfCount")
-  payment: [Payment!]! @relation(name: "PaymentOfCount")
+  cart: [Cart!] @relation(name: "CartOfCount", onDelete: CASCADE)
+  payment: [Payment!]! @relation(name: "PaymentOfCount", onDelete: CASCADE)
 }
 
 type Cart {
   id: ID! @id
-  user: User! @relation(name: "UserOfCart")
-  funding: [Funding] @relation(name:"FundingOfCart")
-  product: [Product] @relation(name: "ProductOfCart")
-  options: [Option!]! @relation(name: "CartOfOption")
+  user: User! @relation(name: "UserOfCart", onDelete: CASCADE)
+  funding: [Funding] @relation(name:"FundingOfCart", onDelete: CASCADE)
+  product: [Product] @relation(name: "ProductOfCart", onDelete: CASCADE)
+  options: [Option!]! @relation(name: "CartOfOption", onDelete: CASCADE)
   count: [Count!]! @relation(name: "CartOfCount", onDelete: CASCADE)
   pcount: Int! @default(value:0)
-  payment: [Payment!] @relation(name: "PaymentOfCart")
+  payment: [Payment!] @relation(name: "PaymentOfCart", onDelete: CASCADE)
 }
 
 type Quantity {
   id: ID! @id
   quantity: Int!
-  buyList: [BuyList!]! @relation(name:"BuyListOfQuanitity")
+  buyList: [BuyList!]! @relation(name:"BuyListOfQuanitity", onDelete: CASCADE)
 }
 
 type BuyList {
   id: ID! @id
-  user: User! @relation(name: "UserOfBuyList")
-  product: [Product!]! @relation(name: "ProductOfBuyList")
-  options: [Option!] @relation(name:"BuyListOfOption")
-  quantity: [Quantity!]! @relation(name:"BuyListOfQuanitity")
+  user: User! @relation(name: "UserOfBuyList", onDelete: CASCADE)
+  product: [Product!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
+  options: [Option!] @relation(name:"BuyListOfOption", onDelete: CASCADE)
+  quantity: [Quantity!]! @relation(name:"BuyListOfQuanitity", onDelete: CASCADE)
 }
 
 type Payment {
   id: ID! @id
-  user: User! @relation(name: "UserOfPayment")
-  funding: [Funding] @relation(name: "FundingOfPayment") 
-  product: [Product] @relation(name: "ProductOfPayment")
-  options: [Option!] @relation(name: "PaymentOfOption")
-  count: [Count!]! @relation(name: "PaymentOfCount")
+  user: User! @relation(name: "UserOfPayment", onDelete: CASCADE)
+  funding: [Funding] @relation(name: "FundingOfPayment", onDelete: CASCADE)
+  product: [Product] @relation(name: "ProductOfPayment", onDelete: CASCADE)
+  options: [Option!] @relation(name: "PaymentOfOption", onDelete: CASCADE)
+  count: [Count!]! @relation(name: "PaymentOfCount", onDelete: CASCADE)
   amount: Int!
-  cart: [Cart!] @relation(name: "PaymentOfCart")
+  cart: [Cart!] @relation(name: "PaymentOfCart", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -191,40 +185,10 @@ type Post {
   updatedAt: DateTime! @updatedAt
 }
 
-type WikiPost {
-  id: ID! @id
-  wtitle: String
-  wcaption: String
-  user: User! @relation(name: "WikiPostsOfUser")
-  wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfWikiPost", onDelete: CASCADE)
-  text: String
-  likes: [Like!]! @relation(name:"LikeOfWikiPost", onDelete: CASCADE)
-  wikicomments: [WikiComment!]! @relation(name: "WikiCommentsOfWikiPost", onDelete: CASCADE)
-  tags: [Tag!] @relation(name: "TagOfWikiPost", onDelete: CASCADE)
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type Member {
-  id: ID! @id
-  memberName: String! @unique
-  avatar: String @default (value: "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png")
-  mtag1: String
-  mtag2: String
-  mtag3: String
-  memberTag: [MemberTag!]! @relation(name: "MemberTagOfMember")
-  user: User! @relation(name: "MembersOfUser")
-  files: [File!]! @relation(name: "FilesOfMember", onDelete: CASCADE)
-  wikifiles: [WikiFile!]! @relation(name: "WikiFilesOfMember", onDelete: CASCADE)
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
 type Like {
   id: ID! @id
   user: User! @relation(name:"LikesOfUser")
   post: Post @relation(name:"LikeOfPost")
-  wikipost: WikiPost @relation(name:"LikeOfWikiPost")
   product: Product @relation(name:"LikeOfProduct")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -239,20 +203,11 @@ type Comment {
   updatedAt: DateTime! @updatedAt
 }
 
-type CommentProduct {
+type CommentFunding {
   id: ID! @id
   text: String!
-  user: User! @relation(name: "CommentProductOfUser")
-  product: Product! @relation(name: "CommentProductOfProduct")
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type WikiComment {
-  id: ID! @id
-  text: String! 
-  user: User! @relation(name: "WikiCommentOfUser")
-  wikipost: WikiPost! @relation(name: "WikiCommentOfWikiPost")
+  user: User! @relation(name: "CommentFundingOfUser", onDelete: CASCADE)
+  funding: Funding! @relation(name: "CommentFundingOfFunding", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -263,33 +218,14 @@ type Tag {
   mainCategory: Boolean
   subCategory: Boolean
   post: Post @relation(name: "TagOfPost", onDelete: CASCADE)
-  wiikiPost: WikiPost @relation(name: "TagOfWikiPost", onDelete: CASCADE)
   product: Product @relation(name: "TagOfProduct", onDelete: CASCADE)
   funding: Funding @relation(name: "TagOfFunding", onDelete: CASCADE)
-}
-
-type MemberTag {
-  id: ID! @id
-  text: String! 
-  member: Member! @relation(name: "MemberTagOfMember")
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
 }
 
 type File {
   id: ID! @id
   url: String!
   post: Post @relation(name:"FilesOfPost")
-  member: Member @relation(name:"FilesOfMember")
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type WikiFile {
-  id: ID! @id
-  url: String!
-  wikipost: WikiPost! @relation(name:"WikiFilesOfWikiPost")
-  member: Member @relation(name:"WikiFilesOfMember")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -317,7 +253,7 @@ type Block {
   creator: User! @relation(name:"Creator")
   funding: Funding! @relation(name:"BlockOfFunding", onDelete:CASCADE)
   collectors: [User!]! @relation(name:"Collectors")
-  seats: [Seat] @relation(name: "SeatOfBlock", onDelete: CASCADE)
+  seats: [Seat] @relation(name:"SeatOfBlock", onDelete:CASCADE)
   seatValue: [Int] 
   seatNum: Int!
   createdAt: DateTime! @createdAt
@@ -337,12 +273,14 @@ type Seat {
 type Contract {
   id: ID! @id
   contentName: String
-  funding: Funding @relation(name:"ContractOfFunding")
+  funding: Funding @relation(name:"ContractOfFunding", onDelete: CASCADE)
   title: String!
   text: String!
-  creator: User! @relation(name:"ContractOfUser")
-  collector: User @relation(name:"ContractOfCollector")
-  condition: [Condition] @relation(name:"ConditionOfContract")
+  title2: String
+  text2: String
+  creator: User! @relation(name:"ContractOfUser", onDelete: CASCADE)
+  collector: User @relation(name:"ContractOfCollector", onDelete: CASCADE)
+  condition: [Condition] @relation(name:"ConditionOfContract", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
 }
 
@@ -350,7 +288,7 @@ type Condition {
   id: ID! @id
   title: String!
   text: String!
-  contract: Contract! @relation(name:"ConditionOfContract")
+  contract: Contract! @relation(name:"ConditionOfContract", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

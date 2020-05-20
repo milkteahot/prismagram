@@ -23,9 +23,6 @@ type User {
   isFollowing: Boolean
   isSelf: Boolean
   bio: String
-  tag1: String
-  tag2: String
-  tag3: String
   tags: [Tag!]!
   following: [User!]!
   followingCount: Int!
@@ -33,9 +30,6 @@ type User {
   followersCount: Int!
   posts: [Post!]!
   postsCount: Int!
-  wikiposts: [WikiPost!]!
-  wikipostsCount: Int!
-  members: [Member!]!
   likes: [Like!]!
   comments: [Comment!]!
   rooms: [Room!]!
@@ -90,6 +84,7 @@ type Funding {
   mainCategory: String! 
   subCategory: String!
   thumbnail: String
+  commentfuding: [CommentFunding] @relation(name: "CommentFundingOfFunding", onDelete: CASCADE)
   fundingFiles: [FundingFile!] 
   block: [Block]
   options: [Option!] 
@@ -192,43 +187,13 @@ type Post {
   updatedAt: DateTime! 
 }
 
-type WikiPost {
-  id: ID!
-  wtitle: String
-  wcaption: String
-  user: User!
-  wikifiles: [WikiFile!]!
-  text: String
-  likes: [Like!]!
-  wikicomments: [WikiComment!]!
-  isLiked: Boolean
-  likeCount: Int!
-  commentCount: Int!
-  tags: [Tag!]
-  createdAt: DateTime! 
-  updatedAt: DateTime! 
-}
 
-type Member {
-  id: ID! 
-  memberName: String!
-  avatar: String
-  mtag1: String
-  mtag2: String
-  mtag3: String
-  memberTag: [MemberTag!]!
-  user: User! 
-  files: [File!]! 
-  wikifiles: [WikiFile!]!
-  createdAt: DateTime! 
-  updatedAt: DateTime! 
-}
+
 
 type Like {
   id: ID!
   user: User!
   post: Post
-  wikipost: WikiPost
   product: Product
   createdAt: DateTime! 
   updatedAt: DateTime! 
@@ -243,20 +208,11 @@ type Comment {
   updatedAt: DateTime! 
 }
 
-type CommentProduct {
-  id: ID!
+type CommentFunding {
+  id: ID! 
   text: String!
-  user: User!
-  product: Product!
-  createdAt: DateTime! 
-  updatedAt: DateTime! 
-}
-
-type WikiComment {
-  id: ID!
-  text: String!
-  user: User!
-  wikipost: WikiPost!
+  user: User! 
+  funding: Funding! 
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
@@ -267,33 +223,14 @@ type Tag {
   mainCategory: Boolean
   subCategory: Boolean
   post: Post
-  wiikiPost: WikiPost
   product: Product
   funding: Funding
-}
-
-type MemberTag {  
-  id: ID!
-  text: String! 
-  member: Member!
-  createdAt: DateTime! 
-  updatedAt: DateTime! 
 }
 
 type File {
   id: ID!
   url: String!
   post: Post!
-  member: Member
-  createdAt: DateTime! 
-  updatedAt: DateTime! 
-}
-
-type WikiFile {
-  id: ID!
-  url: String!
-  wikipost: WikiPost!
-  member: Member
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
@@ -345,6 +282,8 @@ type Contract {
   funding: Funding
   title: String!
   text: String!
+  title2: String
+  text2: String
   creator: User!
   collector: User
   condition: [Condition] 
