@@ -19,6 +19,7 @@ export default {
         fundingFiles,
         text,
         link,
+        tags,
       } = args;
       // file과 option 없이 funding 생성
       const funding = await prisma.createFunding({
@@ -60,6 +61,21 @@ export default {
             }
         })
     });
+
+    const tagexists = args.tags;
+      if(tagexists != null) {
+      tags.forEach(
+        async tag => 
+          await prisma.createTag({
+            text: tag,
+            funding: {
+              connect: {
+                id: funding.id
+              }
+            }
+          })
+        );
+      }
 
     //   fundingDetailFile.forEach(async fundingDetailFile => {
     //     await prisma.createfundingDetailFile({

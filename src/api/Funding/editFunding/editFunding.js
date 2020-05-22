@@ -1,28 +1,43 @@
 import { prisma } from "../../../../generated/prisma-client";
 
+const DELETE = "DELETE";
+const EDIT = "EDIT";
+
 export default {
   // funding 기본 정보 수정
   Mutation: {
     editFunding: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { id, name, price, mainCategory, subCategory } = args;
+      const { 
+        id, name, price, mainCategory, subCategory, 
+        targetAmount, dueDate, currentAmount, 
+        action 
+            } = args;
       const { user } = request;
       const funding = await prisma.$exists.funding({
         id,
         user: { id: user.id }
       });
+
       if (funding) {
+        if(action === EDIT) {
         return prisma.updateFunding({
           data: {
             name,
             price,
             mainCategory,
-            subCategory
+            subCategory,
+            targetAmount, 
+            dueDate, 
+            currentAmount, 
           },
           where: {
             id
-          }
-        });
+            }
+          });
+        } else if (action === DELETE) {
+          return prisma.deleteFunding({ id });
+        }
       } else {
         throw Error("You can't do that");
       }
@@ -105,9 +120,8 @@ export default {
               where: {
                 id: tagId[index]
               },
-              data: {
                 text: text
-              }
+              
             });
           } else {
             await prisma.createTag({

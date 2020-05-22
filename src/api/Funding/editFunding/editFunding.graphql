@@ -1,3 +1,8 @@
+enum ACTIONS {
+    EDIT
+    DELETE
+}
+
 type Mutation {
     editFunding (
         id: String! 
@@ -10,6 +15,7 @@ type Mutation {
         mainCategory: String 
         subCategory: String 
         thumbnail: String
+        action: ACTIONS!
     ): Funding!
 }
 

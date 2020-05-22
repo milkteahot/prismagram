@@ -12,7 +12,7 @@ type Mutation {
         thumbnail: String
         fundingFiles: [String]
         options: [String!]
-        tags: [String!] 
+        tags: [String!]! 
         text: String
         link: [String]
     ): Funding! 
