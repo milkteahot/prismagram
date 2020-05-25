@@ -4,12 +4,10 @@ export default {
   Query: {
     seeFullPost: async (_, args) => {
       const { id } = args;
-      const products = await prisma
-        .products({ 
+      const posts = await prisma
+        .posts({ 
           where: { 
-            user: { 
-              id: user.id 
-            } 
+            id: id
           }, orderBy: "updatedAt_DESC" 
         });
       return prisma.post({ id });
