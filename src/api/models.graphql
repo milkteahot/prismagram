@@ -111,6 +111,7 @@ type FundingFile {
 type AdminFile {
   id: ID!
   url: String!
+  secondTabTitle: String
 }
 
 type Option {

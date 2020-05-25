@@ -1,0 +1,8 @@
+type Query {
+    seeAdmin: [AdminFile!]!
+}   
+
+type AdminFile {
+    id: ID!
+    secondTabTitle: String
+}
