@@ -5,7 +5,12 @@ export default {
     Mutation: {
         addPayment : async (_, args, { request }) => {
             const { user } = request;
-            const { funding, count, cart, amount } = args; 
+            const { funding, count, cart, 
+                    payMethod, name, amount,
+                    merchantUid, buyerName,
+                    buyerTel, buyerEmail, buyerAddr, buyerPostcode,
+                    status, 
+                } = args; 
 
             if(cart === undefined) {
                 try {
@@ -30,7 +35,11 @@ export default {
                                     id: countId.id
                                 }
                             },
-                            amount
+                            amount,
+                            payMethod, name, 
+                            merchantUid, buyerName,
+                            buyerTel, buyerEmail, buyerAddr, buyerPostcode,
+                            status, 
                         });
                         // console.log(payment)
                         // console.log(cart);
@@ -67,7 +76,12 @@ export default {
                                 connect: {
                                     id: cart[index]
                                 }
-                            }
+                            },
+                            amount,
+                            payMethod, name, 
+                            merchantUid, buyerName,
+                            buyerTel, buyerEmail, buyerAddr, buyerPostcode,
+                            status,
                         });
                         // return payment;
                         // return true;

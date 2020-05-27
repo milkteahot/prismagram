@@ -4,5 +4,14 @@ type Mutation {
         count: [Int!]
         cart: [String]
         amount: Int!
+        payMethod: String
+        name: String
+        merchantUid: String
+        buyerName: String
+        buyerTel: String
+        buyerEmail: String
+        buyerAddr: String
+        buyerPostcode: String
+        status: String
     ): Boolean!
 }

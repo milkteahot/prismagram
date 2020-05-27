@@ -167,6 +167,15 @@ type Payment {
   options: [Option!] @relation(name: "PaymentOfOption", onDelete: CASCADE)
   count: [Count!]! @relation(name: "PaymentOfCount", onDelete: CASCADE)
   amount: Int!
+  payMethod: String
+  name: String
+  merchantUid: String
+  buyerName: String
+  buyerTel: String
+  buyerEmail: String
+  buyerAddr: String
+  buyerPostcode: String
+  status: String
   cart: [Cart!] @relation(name: "PaymentOfCart", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
