@@ -1,7 +1,7 @@
 type User {
   id: ID! @id
   avatar: String  @default(
-      value: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+      value: "https://catcher-test2.s3.ap-northeast-2.amazonaws.com/1590656323737.png"
     )
   userName: String! @unique
   email: String! @unique
