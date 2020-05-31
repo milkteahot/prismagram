@@ -5,6 +5,7 @@ type Mutation {
         email: String!
         password: String!
         bio: String
+        avatar: String
         zipCode: String
         address: String
         addressDetail: String

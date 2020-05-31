@@ -8,7 +8,7 @@ const passwordCheck = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
 export default {
   Mutation: {
     createAccount: async(_, args) => {
-      const { userName, nickName, email, password } = args;
+      const { userName, nickName, email, password, avatar } = args;
       const exists = await prisma.$exists.user({ email });
       const existsUserName = await prisma.$exists.user({ userName });
       if(existsUserName) {
@@ -33,7 +33,8 @@ export default {
                 userName,
                 nickName,
                 email,
-                password: hash
+                password: hash,
+                avatar
             });
         });
         return true;
