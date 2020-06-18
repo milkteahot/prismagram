@@ -60,6 +60,7 @@ type Product {
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
   buyList: [BuyList!]! @relation(name: "ProductOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "ProductOfPayment", onDelete: CASCADE)
+  post: Post @relation(name: "ProductOfPost", onDelete:CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 } 
@@ -95,6 +96,7 @@ type Funding {
   buyList: [BuyList!]! @relation(name: "FundingOfBuyList", onDelete: CASCADE)
   payment: [Payment!]! @relation(name: "FundingOfPayment", onDelete: CASCADE)
   contract: [Contract] @relation(name:"ContractOfFunding", onDelete: CASCADE)
+  post: Post @relation(name: "FundingOfPost", onDelete:CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -196,6 +198,8 @@ type Post {
   likes: [Like!]! @relation(name:"LikeOfPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfPost", onDelete: CASCADE)
   tags: [Tag!]! @relation(name: "TagOfPost", onDelete: CASCADE)
+  products: [Product!] @relation(name: "ProductOfPost", onDelete:CASCADE)
+  fundings: [Funding!] @relation(name: "FundingOfPost", onDelete:CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

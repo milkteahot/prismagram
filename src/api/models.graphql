@@ -62,6 +62,7 @@ type Product {
   isLiked: Boolean
   likeCount: Int!
   commentCount: Int!
+  post: Post
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
@@ -100,6 +101,7 @@ type Funding {
   buyList: [BuyList!]! 
   payment: [Payment!]! 
   contract: [Contract]
+  post: Post
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
@@ -205,6 +207,8 @@ type Post {
   likeCount: Int!
   commentCount: Int!
   tags: [Tag!]!
+  products: [Product!]
+  fundings: [Funding!]
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
