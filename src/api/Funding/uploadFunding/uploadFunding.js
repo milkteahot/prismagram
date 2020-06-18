@@ -20,6 +20,8 @@ export default {
         text,
         link,
         tags,
+        postId,
+        blockNum,
       } = args;
       // file과 option 없이 funding 생성
       const funding = await prisma.createFunding({
@@ -34,7 +36,8 @@ export default {
         subCategory,
         thumbnail,
         text,
-        user: { connect: { id: user.id } }
+        user: { connect: { id: user.id } },
+        post: { connect: { id: postId }},
       });
       const exists = args.fundingFiles;
       if(exists != null) {
@@ -50,6 +53,8 @@ export default {
         });
       });
     }
+    const existLink = args.link;
+    if(existLink != null) {
       link.forEach(
         async link => {
         await prisma.createLink({
@@ -61,6 +66,7 @@ export default {
             }
         })
     });
+  }
 
     const tagexists = args.tags;
       if(tagexists != null) {
@@ -76,6 +82,29 @@ export default {
           })
         );
       }
+
+    const block = await prisma.createBlock({
+      creator: {
+        connect: {
+          id: user.id
+        }
+      },
+      funding: {
+        connect: {
+          id: funding.id
+        }
+      },
+      seatNum: 1
+    });
+
+    const seat = await prisma.createSeat({
+      number:1,
+      block: {
+        connect: {
+          id: block.id
+        }
+      }
+    })
 
     //   fundingDetailFile.forEach(async fundingDetailFile => {
     //     await prisma.createfundingDetailFile({
