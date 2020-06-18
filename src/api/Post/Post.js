@@ -6,6 +6,8 @@ export default {
     comments: ({ id }) => prisma.post({ id }).comments(),
     likes: ({ id }) => prisma.post({ id }).likes(),
     files: ({ id }) => prisma.post({ id }).files(),
+    // product: ({ id }) => prisma.product({ id }).product(),
+    // funding: ({ id }) => prisma.funding({ id }).funding(),
     tags: ({ id }) => prisma.post({ id }).tags(),
     isLiked: (parent, _, { request }) => {
       const { user } = request;

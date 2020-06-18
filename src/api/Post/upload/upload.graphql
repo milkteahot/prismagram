@@ -2,8 +2,10 @@ type Mutation {
     upload(
         title: String! 
         caption:String! 
-        files: [String]
         thumbnail: String
+        files: [String]
+        mainCategory: String
+        subCategory: String
         tags: [String]
     ) : Post!
 }
