@@ -9,5 +9,8 @@ type Mutation {
         text: String  
         productFiles: [String]
         options: [String!]!
+        targetOfSales: Int!
+        isValidated: Boolean!
+        postId: String!
     ): Product! 
 }
