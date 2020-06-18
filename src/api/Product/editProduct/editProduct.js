@@ -5,8 +5,17 @@ export default {
   Mutation: {
     editProduct: async (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { id, name, price, mainCategory, subCategory, thumbnail, title,
-        text } = args;
+      const {
+        id,
+        name,
+        price,
+        mainCategory,
+        subCategory,
+        thumbnail,
+        title,
+        text,
+        isValidated,
+      } = args;
       const { user } = request;
       const product = await prisma.$exists.product({
         id,
@@ -21,7 +30,8 @@ export default {
             subCategory,
             thumbnail,
             title,
-            text
+            text,
+            isValidated,
           },
           where: {
             id
@@ -65,7 +75,7 @@ export default {
         });
       });
       return true;
-    },
+    }
     // 옵션 수정
     /*
     editOption: (_, args) => {
@@ -100,6 +110,5 @@ export default {
       }
     }
     */
-    
   }
 };

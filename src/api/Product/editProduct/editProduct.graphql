@@ -8,6 +8,7 @@ type Mutation {
         thumbnail: String
         title: String
         text: String
+        isValidated: Boolean!
     ): Product!
 }
 
