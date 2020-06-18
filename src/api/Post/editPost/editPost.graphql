@@ -8,6 +8,9 @@ type Mutation {
         id:String! 
         caption: String 
         title: String
+        mainCategory: String
+        subCategory: String
+        isValidated: Boolean!
         action: ACTIONS!
     ): Post!
 }
