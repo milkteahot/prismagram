@@ -53,6 +53,8 @@ type Product {
   productFiles: [ProductFile!] @relation(name: "ProductFileOfProduct", onDelete: CASCADE)
   options: [Option!] @relation(name: "ProductOfOption", onDelete: CASCADE)
   numberOfSales: Int! @default(value: 0)
+  targetOfSales: Int! @default(value: 100) 
+  isValidated: Boolean! @default(value: false)
   tags: [Tag!]! @relation(name: "TagOfProduct", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfProduct", onDelete: CASCADE)
   cart: [Cart!]! @relation(name: "ProductOfCart", onDelete: CASCADE)
@@ -187,6 +189,9 @@ type Post {
   caption: String!
   user: User! @relation(name: "PostsOfUser")
   thumbnail: String 
+  isValidated: Boolean! @default(value:false)
+  mainCategory: String
+  subCategory: String
   files: [File] @relation(name: "FilesOfPost", onDelete: CASCADE)
   likes: [Like!]! @relation(name:"LikeOfPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfPost", onDelete: CASCADE)

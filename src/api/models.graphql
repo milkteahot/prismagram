@@ -54,6 +54,8 @@ type Product {
   productFiles: [ProductFile!]
   options: [Option!]
   numberOfSales: Int!
+  targetOfSales: Int!
+  isValidated: Boolean!
   tags: [Tag!]! 
   likes: [Like!]!
   commentfunding: [CommentFunding!]!
@@ -193,6 +195,9 @@ type Post {
   caption: String!
   user: User!
   thumbnail: String 
+  isValidated: Boolean!
+  mainCategory: String
+  subCategory: String
   files: [File]
   likes: [Like!]!
   comments: [Comment!]!
@@ -203,8 +208,6 @@ type Post {
   createdAt: DateTime! 
   updatedAt: DateTime! 
 }
-
-
 
 
 type Like {
