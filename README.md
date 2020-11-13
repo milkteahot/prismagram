@@ -14,10 +14,10 @@ Catcher는 SNS형 마켓플레이스 앱서비스입니다. 캐릭터 디자이�
     - 장바구니 담기
     - 결제하기
     
-- 시연영상: 
+- 시연영상: https://youtu.be/fWxG4UflDx4
 
-<iframe class="youtube" src="https://youtu.be/fWxG4UflDx4"  
- frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
+ 
+ [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/fWxG4UflDx4/0.jpg)](https://www.youtube.com/watch?v=fWxG4UflDx4)
 
 
 ## USER Stories
