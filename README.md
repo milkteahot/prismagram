@@ -11,6 +11,8 @@ Catcher는 SNS형 마켓플레이스 앱서비스입니다. 캐릭터 디자이�
     - 검색
     - 피드보기
     - 메시지 기능
+    - 장바구니 담기
+    - 결제하기
     
 - 시연영상 링크: https://drive.google.com/file/d/1EvKbeTaT5ArQF_-1QXCPek6i_jv9AKmE/view?usp=sharing
 
