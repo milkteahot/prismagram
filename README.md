@@ -21,8 +21,20 @@
 - [x] Receive Message (Realtime)
 
 
+- ## Catcher
+
+2019.12~2020.04 / UXUI디자이너 1명, 프론트개발자 2명, 백엔드개발자 1명으로 이루어진 팀 개발
+
+Catcher는 SNS형 마켓플레이스 앱서비스입니다. 캐릭터 디자이너가 전용샵을 오픈하고 판매할 수 있습니다.
+
+- Node.js / Graphql / Prisma 기반의 커머스 및 SNS 서비스 백엔드 개발
+    - 로그인, 회원가입
+    - 사진 업로드
+    - 좋아요, 댓글, 팔로우
+    - 검색
+    - 피드보기
+    - 메시지 기능
+    
 - 시연영상 링크: https://drive.google.com/file/d/1EvKbeTaT5ArQF_-1QXCPek6i_jv9AKmE/view?usp=sharing
 
-<img src="https://www.notion.so/kayoung/86a150a101e84bf99b40afe7871975ac#9ead6a05cdc8480693b1102b956e68cf" />
-<img src="https://www.notion.so/kayoung/86a150a101e84bf99b40afe7871975ac#e06504133ebe4c9f8558ac5925dbcfe3" />
-<img src="https://www.notion.so/kayoung/86a150a101e84bf99b40afe7871975ac#7b1a8521a6754b53a9df57b656b56a5b" />
+
